@@ -17,3 +17,4 @@ void Draw();
 
 void ProcessPendingObjects();
 void DestroyObjects();
+void Quit();

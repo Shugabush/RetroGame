@@ -39,12 +39,12 @@ int main()
     //--------------------------------------------------------------------------------------
     
     // Create and add the player
-    Player player = {};
+    Player* player = new Player();
     Texture2D playerSprite = LoadTexture("spaceship.png");
-    player.sprite = &playerSprite;
-    player.movementSpeed = 5;
-    player.position = { 400, 300 };
-    objects.push_back(&player);
+    player->sprite = &playerSprite;
+    player->movementSpeed = 5;
+    player->position = { 400, 300 };
+    objects.push_back(player);
 
     const int screenWidth = 800;
     const int screenHeight = 450;
@@ -54,14 +54,12 @@ int main()
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
-    for (int i = 0; i < objects.size(); i++)
-    {
-        objects[i]->Start();
-    }
-
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
+        ProcessPendingObjects();
+        DestroyObjects();
+
         // Update
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
@@ -76,12 +74,12 @@ int main()
 
         Draw();
 
-        ProcessPendingObjects();
-        DestroyObjects();
-
         EndDrawing();
+
         //----------------------------------------------------------------------------------
     }
+
+    Quit();
 
     // De-Initialization
     //--------------------------------------------------------------------------------------

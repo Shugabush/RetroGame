@@ -1,5 +1,6 @@
 #include "Utility.h"
 #include "raylib.h"
+#include <iostream>
 
 std::vector<GameObject*> objects;
 std::vector<GameObject*> pendingObjects;
@@ -19,6 +20,8 @@ int GetInput()
 	return input;
 }
 
+// Only use gameobjects that you called new on
+// or else the program will likely break
 void Instantiate(GameObject* obj)
 {
 	pendingObjects.push_back(obj);
@@ -50,13 +53,23 @@ void ProcessPendingObjects()
 	{
 		objects.push_back(pendingObjects[i]);
 	}
-	pendingObjects = {};
+	pendingObjects.clear();
 }
 void DestroyObjects()
 {
 	for (int i = 0; i < objectsToDestroy.size(); i++)
 	{
 		objects.erase(objects.begin() + i);
+		delete objectsToDestroy[i];
 	}
-	objectsToDestroy = {};
+	objectsToDestroy.clear();
+}
+
+void Quit()
+{
+	for (int i = 0; i < objects.size(); i++)
+	{
+		delete objects[i];
+	}
+	objects.clear();
 }

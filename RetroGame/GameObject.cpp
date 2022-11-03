@@ -23,6 +23,9 @@ void GameObject::Draw()
 
 void SpriteObject::Draw()
 {
-	DrawTexture(*sprite, (int)position.x, (int)position.y, WHITE);
+	if (sprite != nullptr)
+	{
+		DrawTexture(*sprite, (int)position.x, (int)position.y, WHITE);
+	}
 }
 

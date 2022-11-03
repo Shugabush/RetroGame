@@ -32,8 +32,8 @@ void Player::Draw()
 
 void Player::Shoot(Vector2 vel)
 {
-	Bullet bullet;
-	bullet.position = position;
-	bullet.velocity = vel;
-	Instantiate(&bullet);
+	Bullet* bullet = new Bullet();
+	bullet->position = position;
+	bullet->velocity = vel;
+	Instantiate(bullet);
 }

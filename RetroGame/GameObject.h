@@ -12,3 +12,11 @@ public:
 	virtual void Update();
 	virtual void Draw();
 };
+
+class SpriteObject : public GameObject
+{
+public:
+	Texture2D* sprite;
+
+	void Draw() override;
+};

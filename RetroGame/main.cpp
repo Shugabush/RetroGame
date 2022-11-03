@@ -30,8 +30,6 @@
 #include "Player.h"
 #include "Utility.h"
 
-std::vector<GameObject*> objects;
-
 //------------------------------------------------------------------------------------
 // Program main entry point
 //------------------------------------------------------------------------------------
@@ -42,6 +40,8 @@ int main()
     
     // Create and add the player
     Player player = {};
+    Texture2D playerSprite = LoadTexture("spaceship.png");
+    player.sprite = &playerSprite;
     player.movementSpeed = 5;
     player.position = { 400, 300 };
     objects.push_back(&player);
@@ -66,10 +66,7 @@ int main()
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
-        for (int i = 0; i < objects.size(); i++)
-        {
-            objects[i]->Update();
-        }
+        Update();
 
         // Draw
         //----------------------------------------------------------------------------------
@@ -77,10 +74,10 @@ int main()
 
         ClearBackground(RAYWHITE);
 
-        for (int i = 0; i < objects.size(); i++)
-        {
-            objects[i]->Draw();
-        }
+        Draw();
+
+        ProcessPendingObjects();
+        DestroyObjects();
 
         EndDrawing();
         //----------------------------------------------------------------------------------

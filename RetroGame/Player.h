@@ -9,6 +9,7 @@ class Player : public GameObject
 public:
 	Player();
 
+	void Start();
 	void Update();
 	void Draw();
 

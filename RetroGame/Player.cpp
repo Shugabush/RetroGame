@@ -6,6 +6,11 @@ Player::Player()
 	health = 3;
 }
 
+void Player::Start()
+{
+	
+}
+
 void Player::Update()
 {
 	

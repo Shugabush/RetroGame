@@ -8,6 +8,7 @@ public:
 	float rotation;
 
 	GameObject();
+	virtual void Start();
 	virtual void Update();
 	virtual void Draw();
 };

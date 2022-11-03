@@ -6,6 +6,11 @@ GameObject::GameObject()
 	rotation = 0;
 }
 
+void GameObject::Start()
+{
+
+}
+
 void GameObject::Update()
 {
 

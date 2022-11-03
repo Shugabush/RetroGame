@@ -41,6 +41,7 @@ int main()
     
     // Create and add the player
     Player player = {};
+    player.position = { 400, 300 };
     objects.push_back(&player);
 
     const int screenWidth = 800;
@@ -50,6 +51,11 @@ int main()
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
+
+    for (int i = 0; i < objects.size(); i++)
+    {
+        objects[i]->Start();
+    }
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key

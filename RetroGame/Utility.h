@@ -20,3 +20,6 @@ void DestroyObjects();
 void Quit();
 
 bool InBounds(GameObject* obj);
+
+float Clamp(float value, float min, float max);
+Vector2 Clamp(Vector2 value, Vector2 min, Vector2 max);

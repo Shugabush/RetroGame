@@ -19,6 +19,7 @@ void Player::Start()
 void Player::Update()
 {
 	position.x += GetInput() * movementSpeed;
+	position = Clamp(position, { 0, 0 }, { (float)GetScreenWidth(), (float)GetScreenHeight() });
 	if (IsKeyPressed(KEY_SPACE))
 	{
 		// Fire a bullet

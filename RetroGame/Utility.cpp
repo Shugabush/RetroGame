@@ -35,10 +35,7 @@ void Update()
 {
 	for (int i = 0; i < objects.size(); i++)
 	{
-		if (InBounds(objects[i]))
-		{
-			objects[i]->Update();
-		}
+		objects[i]->Update();
 	}
 }
 
@@ -97,4 +94,23 @@ bool InBounds(GameObject* obj)
 	}
 
 	return true;
+}
+
+float Clamp(float value, float min, float max)
+{
+	if (value < min)
+	{
+		value = min;
+	}
+	if (value > max)
+	{
+		value = max;
+	}
+	return value;
+}
+Vector2 Clamp(Vector2 value, Vector2 min, Vector2 max)
+{
+	value.x = Clamp(value.x, min.x, max.x);
+	value.y = Clamp(value.y, min.y, max.y);
+	return value;
 }

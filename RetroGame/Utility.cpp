@@ -39,11 +39,6 @@ void Update()
 		{
 			objects[i]->Update();
 		}
-		else
-		{
-			std::cout << "destroying" << std::endl;
-			Destroy(objects[i]);
-		}
 	}
 }
 

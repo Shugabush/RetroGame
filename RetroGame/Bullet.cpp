@@ -1,5 +1,7 @@
 #include "Bullet.h"
+#include "Utility.h"
 #include "raylib.h"
+#include <iostream>
 
 Bullet::Bullet()
 {
@@ -10,6 +12,11 @@ void Bullet::Update()
 {
 	position.x += velocity.x;
 	position.y += velocity.y;
+	if (!InBounds(this))
+	{
+		std::cout << "destroying" << std::endl;
+		Destroy(this);
+	}
 }
 
 void Bullet::Draw()

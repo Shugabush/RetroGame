@@ -22,8 +22,14 @@
 ********************************************************************************************/
 
 #include <iostream>
+#include <list>
+#include <vector>
 
 #include "raylib.h"
+#include "GameObject.h"
+#include "Player.h"
+
+std::vector<GameObject*> objects;
 
 //------------------------------------------------------------------------------------
 // Program main entry point

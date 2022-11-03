@@ -8,4 +8,8 @@ class Player : GameObject
 
 public:
 	Player();
+
+	void Update();
+
+	void Shoot();
 };

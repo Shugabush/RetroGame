@@ -18,3 +18,5 @@ void Draw();
 void ProcessPendingObjects();
 void DestroyObjects();
 void Quit();
+
+bool InBounds(GameObject* obj);

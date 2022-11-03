@@ -57,8 +57,7 @@ int main()
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        ProcessPendingObjects();
-        DestroyObjects();
+        
 
         // Update
         //----------------------------------------------------------------------------------
@@ -75,6 +74,9 @@ int main()
         Draw();
 
         EndDrawing();
+
+        ProcessPendingObjects();
+        DestroyObjects();
 
         //----------------------------------------------------------------------------------
     }

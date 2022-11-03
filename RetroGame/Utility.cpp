@@ -35,7 +35,15 @@ void Update()
 {
 	for (int i = 0; i < objects.size(); i++)
 	{
-		objects[i]->Update();
+		if (InBounds(objects[i]))
+		{
+			objects[i]->Update();
+		}
+		else
+		{
+			std::cout << "destroying" << std::endl;
+			Destroy(objects[i]);
+		}
 	}
 }
 
@@ -59,8 +67,8 @@ void DestroyObjects()
 {
 	for (int i = 0; i < objectsToDestroy.size(); i++)
 	{
-		objects.erase(objects.begin() + i);
 		delete objectsToDestroy[i];
+		objects.erase(std::remove(objects.begin(), objects.end(), objectsToDestroy[i]), objects.end());
 	}
 	objectsToDestroy.clear();
 }
@@ -72,4 +80,26 @@ void Quit()
 		delete objects[i];
 	}
 	objects.clear();
+}
+
+bool InBounds(GameObject* obj)
+{
+	if (obj->position.x > GetScreenWidth())
+	{
+		return false;
+	}
+	if (obj->position.x < 0)
+	{
+		return false;
+	}
+	if (obj->position.y > GetScreenHeight())
+	{
+		return false;
+	}
+	if (obj->position.y < 0)
+	{
+		return false;
+	}
+
+	return true;
 }

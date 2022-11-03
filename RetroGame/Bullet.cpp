@@ -1,6 +1,11 @@
 #include "Bullet.h"
 #include "raylib.h"
 
+Bullet::Bullet()
+{
+	size = 5;
+}
+
 void Bullet::Update()
 {
 	position.x += velocity.x;
@@ -9,5 +14,5 @@ void Bullet::Update()
 
 void Bullet::Draw()
 {
-	DrawCircle((int)position.x, (int)position.y, 50, BLACK);
+	DrawCircle((int)position.x + (size / 4), (int)position.y + (size / 4), size, BLACK);
 }

@@ -28,6 +28,7 @@
 #include "raylib.h"
 #include "GameObject.h"
 #include "Player.h"
+#include "Utility.h"
 
 std::vector<GameObject*> objects;
 
@@ -41,6 +42,7 @@ int main()
     
     // Create and add the player
     Player player = {};
+    player.movementSpeed = 5;
     player.position = { 400, 300 };
     objects.push_back(&player);
 

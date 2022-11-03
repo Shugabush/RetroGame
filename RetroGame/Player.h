@@ -7,6 +7,8 @@ class Player : public GameObject
 	int health;
 
 public:
+	float movementSpeed;
+
 	Player();
 
 	void Start();

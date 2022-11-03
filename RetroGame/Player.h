@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include "raylib.h"
 
-class Player : GameObject
+class Player : public GameObject
 {
 	int health;
 
@@ -10,6 +10,7 @@ public:
 	Player();
 
 	void Update();
+	void Draw();
 
 	void Shoot();
 };

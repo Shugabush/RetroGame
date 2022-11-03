@@ -38,6 +38,11 @@ int main()
 {
     // Initialization
     //--------------------------------------------------------------------------------------
+    
+    // Create and add the player
+    Player player = {};
+    objects.push_back(&player);
+
     const int screenWidth = 800;
     const int screenHeight = 450;
 
@@ -53,12 +58,21 @@ int main()
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
+        for (int i = 0; i < objects.size(); i++)
+        {
+            objects[i]->Update();
+        }
 
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
         ClearBackground(RAYWHITE);
+
+        for (int i = 0; i < objects.size(); i++)
+        {
+            objects[i]->Draw();
+        }
 
         EndDrawing();
         //----------------------------------------------------------------------------------

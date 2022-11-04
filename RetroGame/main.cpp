@@ -51,14 +51,17 @@ int main()
 
     // Create and add barriers
     Barrier* barrier1 = new Barrier(3);
+    barrier1->name = "Barrier1";
     barrier1->position = { 125, 250 };
     barrier1->width = 100;
     barrier1->height = 25;
     Barrier* barrier2 = new Barrier(3);
+    barrier2->name = "Barrier2";
     barrier2->position = { screenWidth / 2, 250 };
     barrier2->width = 100;
     barrier2->height = 25;
     Barrier* barrier3 = new Barrier(3);
+    barrier3->name = "Barrier3";
     barrier3->position = { 475, 250 };
     barrier3->width = 100;
     barrier3->height = 25;
@@ -70,6 +73,8 @@ int main()
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
+
+    Start();
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key

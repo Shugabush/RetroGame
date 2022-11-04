@@ -4,6 +4,7 @@
 
 Barrier::Barrier(int durability)
 {
+	name = "Barrier";
 	this->durability = durability;
 	width = 25;
 	height = 25;
@@ -13,7 +14,7 @@ void Barrier::Update()
 {
 	int posX = (int)position.x - (width / 2);
 	int posY = (int)position.y - (height / 2);
-	collider->SetBounds({ (float)posX, (float)posY, (float)width, (float)height});
+	collider->SetBounds({ (float)posX, (float)posY, (float)width, (float)height });
 }
 
 void Barrier::Draw()

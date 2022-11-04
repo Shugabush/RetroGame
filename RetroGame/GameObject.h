@@ -1,11 +1,14 @@
 #pragma once
-#include "raylib.h"
+#include "raylib-cpp.hpp"
+
+#include <iostream>
 
 class Collider;
 
 class GameObject
 {
 public:
+	std::string name;
 	Vector2 position;
 	float rotation;
 	Collider* collider;
@@ -33,13 +36,13 @@ public:
 
 class Collider
 {
-	BoundingBox* bounds;
+	raylib::BoundingBox* bounds;
 
 public:
 	GameObject* gameObject;
 	Collider(GameObject* obj);
-	Collider(GameObject* obj, BoundingBox bounds);
+	Collider(GameObject* obj, raylib::BoundingBox bounds);
 
-	BoundingBox GetBounds();
+	raylib::BoundingBox GetBounds();
 	void SetBounds(Rectangle rect);
 };

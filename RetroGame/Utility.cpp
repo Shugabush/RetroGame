@@ -1,5 +1,5 @@
 #include "Utility.h"
-#include "raylib.h"
+
 #include <iostream>
 
 std::vector<GameObject*> objects;
@@ -29,6 +29,14 @@ void Instantiate(GameObject* obj)
 void Destroy(GameObject* obj)
 {
 	objectsToDestroy.push_back(obj);
+}
+
+void Start()
+{
+	for (int i = 0; i < objects.size(); i++)
+	{
+		objects[i]->Update();
+	}
 }
 
 void Update()
@@ -113,18 +121,6 @@ bool ObjectsOverlap(GameObject* a, GameObject* b)
 	return false;
 }
 
-float Clamp(float value, float min, float max)
-{
-	if (value < min)
-	{
-		value = min;
-	}
-	if (value > max)
-	{
-		value = max;
-	}
-	return value;
-}
 Vector2 Clamp(Vector2 value, Vector2 min, Vector2 max)
 {
 	value.x = Clamp(value.x, min.x, max.x);

@@ -1,5 +1,7 @@
 #pragma once
 #include "GameObject.h"
+#include "raylib-cpp.hpp"
+
 #include <vector>
 
 int GetInput();
@@ -11,6 +13,7 @@ extern std::vector<GameObject*> objectsToDestroy;
 void Instantiate(GameObject* obj);
 void Destroy(GameObject* obj);
 
+void Start();
 void Update();
 
 void Draw();
@@ -22,5 +25,4 @@ void Quit();
 bool InBounds(GameObject* obj);
 bool ObjectsOverlap(GameObject* a, GameObject* b);
 
-float Clamp(float value, float min, float max);
 Vector2 Clamp(Vector2 value, Vector2 min, Vector2 max);

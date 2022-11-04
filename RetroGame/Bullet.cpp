@@ -3,15 +3,18 @@
 #include "raylib.h"
 #include <iostream>
 
-Bullet::Bullet()
+Bullet::Bullet() : SpriteObject()
 {
+	name = "Bullet";
 	size = 5;
+	velocity = { 0, 0 };
 }
 
 void Bullet::Update()
 {
 	position.x += velocity.x;
 	position.y -= velocity.y;
+	collider->SetBounds({ size, size, size, size });
 	if (!InBounds(this))
 	{
 		collider->SetBounds({ size, size, size, size });

@@ -20,7 +20,8 @@ int GetInput()
 	return input;
 }
 
-// Only use gameobjects that you called new on
+// Only use these methods with
+// GameObjects that you called new on
 // or else the program will likely break
 void Instantiate(GameObject* obj)
 {
@@ -35,7 +36,7 @@ void Start()
 {
 	for (int i = 0; i < objects.size(); i++)
 	{
-		objects[i]->Update();
+		objects[i]->OnUpdate();
 	}
 }
 
@@ -43,7 +44,9 @@ void Update()
 {
 	for (int i = 0; i < objects.size(); i++)
 	{
-		objects[i]->Update();
+		objects[i]->OnUpdate();
+
+		// Check for collision
 		for (int c = 0; c < objects.size(); c++)
 		{
 			// If we're not comparing the same collider to itself
@@ -62,8 +65,7 @@ void Draw()
 {
 	for (int i = 0; i < objects.size(); i++)
 	{
-		objects[i]->Draw();
-		objects[i]->DrawCollider();
+		objects[i]->OnDraw();
 	}
 }
 

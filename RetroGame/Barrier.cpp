@@ -1,6 +1,7 @@
 #include "Barrier.h"
 #include "Utility.h"
 #include "raylib.h"
+#include "Bullet.h"
 
 Barrier::Barrier(int durability)
 {
@@ -22,6 +23,16 @@ void Barrier::Draw()
 	int posX = (int)position.x - (width / 2);
 	int posY = (int)position.y - (height / 2);
 	DrawRectangle(posX, posY, width, height, BROWN);
+}
+
+void Barrier::OnCollisionStay(Collider* other)
+{
+	if (typeid(*other->gameObject) == typeid(Bullet))
+	{
+		Destroy(other->gameObject);
+		Damage();
+		std::cout << "here" << std::endl;
+	}
 }
 
 // Damage the barrier

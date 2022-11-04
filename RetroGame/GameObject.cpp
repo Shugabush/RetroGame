@@ -18,12 +18,24 @@ GameObject::~GameObject()
 
 void GameObject::Start()
 {
+	OnUpdate();
+}
+
+void GameObject::OnUpdate()
+{
+	collider->SetBounds({ 0, 0, 0, 0 });
 	Update();
 }
 
 void GameObject::Update()
 {
 	
+}
+
+void GameObject::OnDraw()
+{
+	Draw();
+	DrawCollider();
 }
 
 void GameObject::Draw()

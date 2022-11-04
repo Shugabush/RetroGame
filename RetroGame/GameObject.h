@@ -7,6 +7,9 @@ class Collider;
 
 class GameObject
 {
+protected:
+	virtual void Update();
+	virtual void Draw();
 public:
 	std::string name;
 	Vector2 position;
@@ -19,8 +22,11 @@ public:
 	void DrawCollider();
 
 	virtual void Start();
-	virtual void Update();
-	virtual void Draw();
+
+	void OnUpdate();
+
+	void OnDraw();
+
 	virtual void OnCollisionEnter(Collider* other);
 	virtual void OnCollisionStay(Collider* other);
 	virtual void OnCollisionExit(Collider* other);

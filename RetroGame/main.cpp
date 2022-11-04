@@ -38,26 +38,35 @@ int main()
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    
+    const int screenWidth = 600;
+    const int screenHeight = 600;
+
     // Create and add the player
     Player* player = new Player(3);
     Texture2D playerSprite = LoadTexture("spaceship.png");
     player->sprite = &playerSprite;
     player->movementSpeed = 5;
-    player->position = { 400, 300 };
+    player->position = { screenWidth / 2, 400 };
     objects.push_back(player);
 
-    // Create barriers
+    // Create and add barriers
     Barrier* barrier1 = new Barrier(3);
-    barrier1->position = { 200, 200 };
-    barrier1->width = 75;
+    barrier1->position = { 125, 250 };
+    barrier1->width = 100;
     barrier1->height = 25;
+    Barrier* barrier2 = new Barrier(3);
+    barrier2->position = { screenWidth / 2, 250 };
+    barrier2->width = 100;
+    barrier2->height = 25;
+    Barrier* barrier3 = new Barrier(3);
+    barrier3->position = { 475, 250 };
+    barrier3->width = 100;
+    barrier3->height = 25;
     objects.push_back(barrier1);
+    objects.push_back(barrier2);
+    objects.push_back(barrier3);
 
-    const int screenWidth = 800;
-    const int screenHeight = 450;
-
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    InitWindow(screenWidth, screenHeight, "Space Invaders");
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------

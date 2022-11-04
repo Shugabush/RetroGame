@@ -11,7 +11,7 @@ public:
 	int rectWidth;
 	int rectHeight;
 
-	Player();
+	Player(int health);
 
 	void Start();
 	void Update();

@@ -3,9 +3,9 @@
 #include "Utility.h"
 #include "Bullet.h"
 
-Player::Player()
+Player::Player(int health)
 {
-	health = 3;
+	this->health = 3;
 	movementSpeed = 1;
 	rectWidth = 25;
 	rectHeight = 25;

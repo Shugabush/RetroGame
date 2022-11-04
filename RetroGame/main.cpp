@@ -28,6 +28,7 @@
 #include "raylib.h"
 #include "GameObject.h"
 #include "Player.h"
+#include "Barrier.h"
 #include "Utility.h"
 
 //------------------------------------------------------------------------------------
@@ -39,12 +40,19 @@ int main()
     //--------------------------------------------------------------------------------------
     
     // Create and add the player
-    Player* player = new Player();
+    Player* player = new Player(3);
     Texture2D playerSprite = LoadTexture("spaceship.png");
     player->sprite = &playerSprite;
     player->movementSpeed = 5;
     player->position = { 400, 300 };
     objects.push_back(player);
+
+    // Create barriers
+    Barrier* barrier1 = new Barrier(3);
+    barrier1->position = { 200, 200 };
+    barrier1->width = 75;
+    barrier1->height = 25;
+    objects.push_back(barrier1);
 
     const int screenWidth = 800;
     const int screenHeight = 450;

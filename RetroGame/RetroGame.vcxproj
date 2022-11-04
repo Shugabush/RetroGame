@@ -142,6 +142,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Barrier.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Enemey.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -150,6 +151,7 @@
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Barrier.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Enemey.h" />
     <ClInclude Include="GameObject.h" />

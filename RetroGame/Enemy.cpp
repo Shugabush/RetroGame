@@ -1,18 +1,24 @@
 #include "Enemy.h"
 #include "Utility.h"
 
-Enemy::Enemy()
+Enemy::Enemy(float delay = 0)
 {
 	health = 1;
 	rectWidth = 10;
 	rectHeight = 10;
 	moveTimer = 1;
-	timeElapsed = 0;
+	timeElapsed = -delay;
 }
 
 void Enemy::Update()
 {
-
+	timeElapsed += GetFrameTime();
+	if (timeElapsed >= moveTimer)
+	{
+		// Time to shift the enemy over
+		position.x += 5;
+		timeElapsed = 0;
+	}
 }
 
 void Enemy::Draw()
@@ -41,6 +47,7 @@ EnemyManager::EnemyManager()
 		float posX = spawnRange.x + (spawnRange.width * ((float)(c + 0.5f) / COLS));
 		for (int r = 0; r < ROWS; r++)
 		{
+			enemies[c][r].timeElapsed = (float)-r / ROWS;
 			float posY = spawnRange.y + (spawnRange.height * ((float)(r + 0.5f) / ROWS));
 			enemies[c][r].position = {posX, posY};
 		}

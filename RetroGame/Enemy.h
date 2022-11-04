@@ -7,13 +7,14 @@ class Enemy : public GameObject
 {
 	int health;
 	float moveTimer; // Used to determine when the enemy should shift over
-	float timeElapsed; // Time elapsed since the last shift
 	
 public:
 	int rectWidth;
 	int rectHeight;
 
-	Enemy();
+	float timeElapsed; // Time elapsed since the last shift
+
+	Enemy(float delay);
 
 	void Update() override;
 	void Draw() override;

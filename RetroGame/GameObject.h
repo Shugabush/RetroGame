@@ -13,9 +13,14 @@ public:
 	GameObject();
 	~GameObject();
 
+	void DrawCollider();
+
 	virtual void Start();
 	virtual void Update();
 	virtual void Draw();
+	virtual void OnCollisionEnter(Collider* other);
+	virtual void OnCollisionStay(Collider* other);
+	virtual void OnCollisionExit(Collider* other);
 };
 
 class SpriteObject : public GameObject
@@ -28,11 +33,13 @@ public:
 
 class Collider
 {
+	BoundingBox* bounds;
+
 public:
-	Collider();
-	Collider(Rectangle bounds);
+	GameObject* gameObject;
+	Collider(GameObject* obj);
+	Collider(GameObject* obj, BoundingBox bounds);
 
-	Rectangle bounds;
-
-	void OnCollisionStay(Collider* other);
+	BoundingBox GetBounds();
+	void SetBounds(Rectangle rect);
 };

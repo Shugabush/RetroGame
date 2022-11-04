@@ -36,6 +36,17 @@ void Update()
 	for (int i = 0; i < objects.size(); i++)
 	{
 		objects[i]->Update();
+		for (int c = 0; c < objects.size(); c++)
+		{
+			// If we're not comparing the same collider to itself
+			if (objects[c] != objects[i])
+			{
+				if (CheckCollisionBoxes(objects[i]->collider->GetBounds(), objects[c]->collider->GetBounds()))
+				{
+					objects[i]->OnCollisionStay(objects[c]->collider);
+				}
+			}
+		}
 	}
 }
 
@@ -44,6 +55,7 @@ void Draw()
 	for (int i = 0; i < objects.size(); i++)
 	{
 		objects[i]->Draw();
+		objects[i]->DrawCollider();
 	}
 }
 
@@ -94,6 +106,11 @@ bool InBounds(GameObject* obj)
 	}
 
 	return true;
+}
+
+bool ObjectsOverlap(GameObject* a, GameObject* b)
+{
+	return false;
 }
 
 float Clamp(float value, float min, float max)

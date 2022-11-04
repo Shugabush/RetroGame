@@ -31,15 +31,16 @@ void Enemy::Shoot(Vector2 vel)
 EnemyManager::EnemyManager()
 {
 	name = "Enemy";
-	enemies = new Enemy[ROWS * COLS];
+	enemies = new Enemy*[COLS];
 	spawnRange = { 25, 25, 550, 300 };
-	for (int r = 0; r < ROWS; r++)
+	for (int c = 0; c < COLS; c++)
 	{
-		float posY = spawnRange.y + (spawnRange.height * ((float)(r + 0.5f) / ROWS));
-		for (int c = 0; c < COLS; c++)
+		enemies[c] = new Enemy[ROWS];
+		float posX = spawnRange.x + (spawnRange.width * ((float)(c + 0.5f) / COLS));
+		for (int r = 0; r < ROWS; r++)
 		{
-			float posX = spawnRange.x + (spawnRange.width * ((float)(c + 0.5f) / COLS));
-			enemies[(r * COLS) + c].position = {posX, posY};
+			float posY = spawnRange.y + (spawnRange.height * ((float)(r + 0.5f) / ROWS));
+			enemies[c][r].position = {posX, posY};
 		}
 	}
 }
@@ -51,17 +52,23 @@ EnemyManager::~EnemyManager()
 
 void EnemyManager::Update()
 {
-	for (int i = 0; i < ROWS; i++)
+	for (int c = 0; c < COLS; c++)
 	{
-		enemies[i].OnUpdate();
+		for (int r = 0; r < ROWS; r++)
+		{
+			enemies[c][r].OnUpdate();
+		}
 	}
 }
 
 void EnemyManager::Draw()
 {
-	for (int i = 0; i < ROWS; i++)
+	for (int c = 0; c < COLS; c++)
 	{
-		enemies[i].OnDraw();
+		for (int r = 0; r < ROWS; r++)
+		{
+			enemies[c][r].OnDraw();
+		}
 	}
 }
 

@@ -23,7 +23,7 @@ class EnemyManager : public GameObject
 {
 	// Enemies that are stored specifically in this class
 	// (not part of the main objects list in utility)
-	Enemy* enemies;
+	Enemy** enemies;
 
 	Rectangle spawnRange;
 

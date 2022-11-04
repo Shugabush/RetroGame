@@ -19,10 +19,11 @@ void Barrier::Update()
 }
 
 void Barrier::Draw()
-{
+{	
 	int posX = (int)position.x - (width / 2);
 	int posY = (int)position.y - (height / 2);
 	DrawRectangle(posX, posY, width, height, BROWN);
+	DrawText(std::to_string(durability).c_str(), (int)position.x, (int)position.y, 25, RED);
 }
 
 void Barrier::OnCollisionStay(Collider* other)

@@ -50,17 +50,17 @@ int main()
     objects.push_back(player);
 
     // Create and add barriers
-    Barrier* barrier1 = new Barrier(3);
+    Barrier* barrier1 = new Barrier(5);
     barrier1->name = "Barrier1";
     barrier1->position = { 125, 250 };
     barrier1->width = 100;
     barrier1->height = 25;
-    Barrier* barrier2 = new Barrier(3);
+    Barrier* barrier2 = new Barrier(5);
     barrier2->name = "Barrier2";
     barrier2->position = { screenWidth / 2, 250 };
     barrier2->width = 100;
     barrier2->height = 25;
-    Barrier* barrier3 = new Barrier(3);
+    Barrier* barrier3 = new Barrier(5);
     barrier3->name = "Barrier3";
     barrier3->position = { 475, 250 };
     barrier3->width = 100;

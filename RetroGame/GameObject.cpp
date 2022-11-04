@@ -29,3 +29,17 @@ void SpriteObject::Draw()
 	}
 }
 
+Collider::Collider(Rectangle bounds)
+{
+	this->bounds = bounds;
+}
+
+void Collider::Update()
+{
+
+}
+
+void Collider::OnCollisionStay(Collider* other)
+{
+
+}

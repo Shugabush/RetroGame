@@ -20,3 +20,14 @@ public:
 
 	void Draw() override;
 };
+
+class Collider : public GameObject
+{
+public:
+	Collider(Rectangle bounds);
+
+	Rectangle bounds;
+
+	void Update() override;
+	void OnCollisionStay(Collider* other);
+};

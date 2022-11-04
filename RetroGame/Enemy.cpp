@@ -6,6 +6,8 @@ Enemy::Enemy()
 	health = 1;
 	rectWidth = 10;
 	rectHeight = 10;
+	moveTimer = 1;
+	timeElapsed = 0;
 }
 
 void Enemy::Update()

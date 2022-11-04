@@ -1,10 +1,24 @@
 #include "Enemy.h"
+
 Enemy::Enemy()
 {
 	health = 1;
 }
 
-void Enemy::Shoot()
+void Enemy::Update()
 {
-	Bullet* bullet;
+
+}
+
+void Enemy::Draw()
+{
+
+}
+
+void Enemy::Shoot(Vector2 vel)
+{
+	Bullet* bullet = new Bullet();
+	bullet->position = position;
+	bullet->velocity = vel;
+	Instantiate(bullet);
 }

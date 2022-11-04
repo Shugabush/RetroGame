@@ -3,12 +3,15 @@
 #include "Bullet.h"
 #include "raylib.h"
 
-class Enemy
+class Enemy : public GameObject
 {
 	int health;
 public:
 	Enemy();
 
-	void Shoot();
+	void Update() override;
+	void Draw() override;
+
+	void Shoot(Vector2 vel);
 };
 

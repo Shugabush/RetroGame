@@ -24,6 +24,7 @@ void DestroyObjects();
 void Quit();
 
 bool InBounds(GameObject* obj);
+bool InBounds(GameObject* obj, float width, float height);
 bool ObjectsOverlap(GameObject* a, GameObject* b);
 
 Vector2 Clamp(Vector2 value, Vector2 min, Vector2 max);

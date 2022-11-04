@@ -61,6 +61,10 @@ EnemyManager::~EnemyManager()
 
 void EnemyManager::Update()
 {
+	if (!InBounds(&enemies[0][0], spawnRange.width + 40, spawnRange.height + 40) || !InBounds(&enemies[COLS - 1][0], spawnRange.width + 40, spawnRange.height + 40))
+	{
+		std::cout << "Time to shift down!" << std::endl;
+	}
 	for (int c = 0; c < COLS; c++)
 	{
 		for (int r = 0; r < ROWS; r++)

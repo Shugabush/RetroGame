@@ -15,3 +15,15 @@ public:
 	void Shoot(Vector2 vel);
 };
 
+class EnemyManager
+{
+public:
+	const int ROWS = 11;
+	const int COLS = 5;
+
+	Enemy* enemies;
+
+	EnemyManager();
+	~EnemyManager();
+};
+

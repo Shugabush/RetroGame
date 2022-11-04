@@ -22,3 +22,13 @@ void Enemy::Shoot(Vector2 vel)
 	bullet->velocity = vel;
 	Instantiate(bullet);
 }
+
+EnemyManager::EnemyManager()
+{
+	enemies = new Enemy[ROWS, COLS];
+}
+
+EnemyManager::~EnemyManager()
+{
+	delete[] enemies;
+}

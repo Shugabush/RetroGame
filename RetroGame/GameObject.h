@@ -19,7 +19,7 @@ public:
 	GameObject();
 	~GameObject();
 
-	void DrawCollider();
+	virtual void DrawCollider();
 
 	virtual void Start();
 

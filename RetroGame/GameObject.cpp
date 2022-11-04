@@ -1,9 +1,17 @@
 #include "GameObject.h"
+#include "Utility.h"
+
+#include <typeinfo>
 
 GameObject::GameObject()
 {
+	collider = new Collider();
 	position = {0, 0};
 	rotation = 0;
+}
+GameObject::~GameObject()
+{
+	delete collider;
 }
 
 void GameObject::Start()
@@ -29,14 +37,14 @@ void SpriteObject::Draw()
 	}
 }
 
+Collider::Collider()
+{
+	this->bounds = Rectangle{0, 0, 0, 0};
+}
+
 Collider::Collider(Rectangle bounds)
 {
 	this->bounds = bounds;
-}
-
-void Collider::Update()
-{
-
 }
 
 void Collider::OnCollisionStay(Collider* other)

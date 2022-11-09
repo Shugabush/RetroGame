@@ -6,7 +6,7 @@
 
 GameObject::GameObject()
 {
-	name = "GameObject";
+	name = "New Game Object";
 	collider = new Collider(this);
 	position = {0, 0};
 	rotation = 0;

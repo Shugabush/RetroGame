@@ -8,6 +8,12 @@ Enemy::Enemy(float delay = 0)
 	rectHeight = 10;
 	moveTimer = 1;
 	timeElapsed = -delay;
+	UpdateStartingPosition();
+}
+
+void Enemy::UpdateStartingPosition()
+{
+	startingPosition = position;
 }
 
 void Enemy::Update()
@@ -36,6 +42,11 @@ void Enemy::Shoot(Vector2 vel)
 	Instantiate(bullet);
 }
 
+void Enemy::ShiftDown()
+{
+
+}
+
 EnemyManager::EnemyManager()
 {
 	name = "Enemy";
@@ -57,6 +68,11 @@ EnemyManager::EnemyManager()
 EnemyManager::~EnemyManager()
 {
 	delete[] enemies;
+}
+
+void EnemyManager::ShiftDown()
+{
+
 }
 
 void EnemyManager::Update()
@@ -88,4 +104,9 @@ void EnemyManager::Draw()
 void EnemyManager::DrawCollider()
 {
 	DrawRectangleLines((int)spawnRange.x, (int)spawnRange.y, (int)spawnRange.width, (int)spawnRange.height, GREEN);
+}
+
+void EnemyManager::OnCollisionStay(Collider* other)
+{
+
 }

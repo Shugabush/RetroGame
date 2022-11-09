@@ -7,6 +7,8 @@ class Enemy : public GameObject
 {
 	int health;
 	float moveTimer; // Used to determine when the enemy should shift over
+
+	Vector2 startingPosition;
 	
 public:
 	int rectWidth;
@@ -16,10 +18,14 @@ public:
 
 	Enemy(float delay);
 
+	void UpdateStartingPosition();
+
 	void Update() override;
 	void Draw() override;
 
 	void Shoot(Vector2 vel);
+
+	void ShiftDown();
 };
 
 class EnemyManager : public GameObject
@@ -37,9 +43,13 @@ public:
 	EnemyManager();
 	~EnemyManager();
 
+	void ShiftDown();
+
 	void Update() override;
 	void Draw() override;
 
 	void DrawCollider() override;
+
+	void OnCollisionStay(Collider* other) override;
 };
 

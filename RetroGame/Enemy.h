@@ -25,7 +25,7 @@ public:
 
 	void Shoot(Vector2 vel);
 
-	void ShiftDown();
+	void ShiftDown(float yShift);
 };
 
 class EnemyManager : public GameObject

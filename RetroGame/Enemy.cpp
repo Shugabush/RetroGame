@@ -42,9 +42,10 @@ void Enemy::Shoot(Vector2 vel)
 	Instantiate(bullet);
 }
 
-void Enemy::ShiftDown()
+void Enemy::ShiftDown(float yShift)
 {
-
+	startingPosition.y -= yShift;
+	position = startingPosition;
 }
 
 EnemyManager::EnemyManager()
@@ -61,6 +62,7 @@ EnemyManager::EnemyManager()
 			enemies[c][r].timeElapsed = (float)-r / ROWS;
 			float posY = spawnRange.y + (spawnRange.height * ((float)(r + 0.5f) / ROWS));
 			enemies[c][r].position = {posX, posY};
+			enemies[c][r].UpdateStartingPosition();
 		}
 	}
 }
@@ -72,7 +74,13 @@ EnemyManager::~EnemyManager()
 
 void EnemyManager::ShiftDown()
 {
-
+	for (int c = 0; c < COLS; c++)
+	{
+		for (int r = 0; r < ROWS; r++)
+		{
+			enemies[c][r].ShiftDown((float)1 / COLS);
+		}
+	}
 }
 
 void EnemyManager::Update()
@@ -80,6 +88,7 @@ void EnemyManager::Update()
 	if (!InBounds(&enemies[0][0], spawnRange.width + 40, spawnRange.height + 40) || !InBounds(&enemies[COLS - 1][0], spawnRange.width + 40, spawnRange.height + 40))
 	{
 		std::cout << "Time to shift down!" << std::endl;
+		ShiftDown();
 	}
 	for (int c = 0; c < COLS; c++)
 	{

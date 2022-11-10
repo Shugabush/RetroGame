@@ -53,6 +53,8 @@ int main()
 
     Start();
 
+    Texture2D background = LoadTexture("background.png");
+
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
@@ -81,7 +83,9 @@ int main()
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-        ClearBackground(DARKGRAY);
+        ClearBackground(RAYWHITE);
+
+        DrawTexture(background, 0, 0, WHITE);
 
         Draw();
         LateDraw();

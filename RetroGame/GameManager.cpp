@@ -2,9 +2,9 @@
 
 GameState gameState = PENDING;
 
-TextScreen* GameManager::pendingScreen = new TextScreen("Play");
-TextScreen* GameManager::winScreen = new TextScreen("Victory!");
-TextScreen* GameManager::loseScreen = new TextScreen("Defeat!");
+TextScreen* GameManager::pendingScreen = new TextScreen("Click to play");
+TextScreen* GameManager::winScreen = new TextScreen("Victory!\nClick to replay");
+TextScreen* GameManager::loseScreen = new TextScreen("Defeat!\nClick to try again");
 
 GameManager::GameManager()
 {
@@ -31,7 +31,7 @@ void GameManager::Play()
 void GameManager::Win()
 {
 	gameState = VICTORY;
-	winScreen->text.text = "Victory!";
+	winScreen->text.text = "Victory!\nClick to replay";
 }
 
 void GameManager::Win(std::string text)
@@ -43,7 +43,7 @@ void GameManager::Win(std::string text)
 void GameManager::Lose()
 {
 	gameState = DEFEAT;
-	loseScreen->text.text = "Defeat!";
+	loseScreen->text.text = "Defeat!\nClick to try again";
 }
 
 void GameManager::Lose(std::string text)
@@ -80,8 +80,8 @@ void TextScreen::Update()
 	}
 }
 
-void TextScreen::Draw()
+void TextScreen::LateDraw()
 {
 	const int textSize = 25;
-	DrawText(text.text.c_str(), (int)position.x - (text.text.length() * (textSize / 5)), (int)position.y - (text.text.length() * (textSize / 5)), textSize, RED);
+	DrawText(text.text.c_str(), (int)position.x - (text.text.length() * (textSize / 5)), (int)position.y - (text.text.length() * (textSize / 5)), textSize, DARKBLUE);
 }

@@ -81,20 +81,21 @@ int main()
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-        ClearBackground(RAYWHITE);
+        ClearBackground(DARKGRAY);
 
         Draw();
+        LateDraw();
 
         switch (gameState)
         {
         case PENDING:
-            GameManager::pendingScreen->Draw();
+            GameManager::pendingScreen->LateDraw();
             break;
         case VICTORY:
-            GameManager::winScreen->Draw();
+            GameManager::winScreen->LateDraw();
             break;
         case DEFEAT:
-            GameManager::loseScreen->Draw();
+            GameManager::loseScreen->LateDraw();
             break;
         }
 

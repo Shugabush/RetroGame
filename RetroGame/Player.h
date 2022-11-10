@@ -15,9 +15,9 @@ public:
 
 	Player(int health);
 
-	void Start();
-	void Update();
-	void Draw();
+	void Start() override;
+	void Update() override;
+	void LateDraw() override;
 
 	void Shoot(Vector2 vel);
 

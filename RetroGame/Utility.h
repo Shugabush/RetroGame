@@ -22,6 +22,7 @@ void Start();
 void Update();
 
 void Draw();
+void LateDraw();
 
 void ProcessPendingObjects();
 void DestroyObjects();

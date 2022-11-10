@@ -46,5 +46,5 @@ public:
 	TextScreen(std::string text);
 
 	void Update() override;
-	void Draw() override;
+	void LateDraw() override;
 };

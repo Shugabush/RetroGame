@@ -27,6 +27,8 @@ public:
 
 	void OnDraw();
 
+	virtual void LateDraw();
+
 	virtual void OnCollisionEnter(Collider* other);
 	virtual void OnCollisionStay(Collider* other);
 	virtual void OnCollisionExit(Collider* other);

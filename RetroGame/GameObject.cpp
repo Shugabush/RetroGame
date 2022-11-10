@@ -42,6 +42,11 @@ void GameObject::Draw()
 
 }
 
+void GameObject::LateDraw()
+{
+
+}
+
 void GameObject::DrawCollider()
 {
 	int width = (int)(collider->GetBounds().max.x - collider->GetBounds().min.x);

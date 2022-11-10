@@ -1,6 +1,9 @@
 #pragma once
 #include "Utility.h"
 
+class WinScreen;
+class LoseScreen;
+
 class GameManager : public GameObject
 {
 	enum GameState
@@ -15,8 +18,13 @@ class GameManager : public GameObject
 	WinScreen* winScreen;
 	LoseScreen* loseScreen;
 
+	static GameManager* instance;
+
 public:
 	GameManager();
+
+	static GameManager* Instance();
+
 	void Update() override;
 
 	void Play();
@@ -27,11 +35,13 @@ public:
 class WinScreen : public GameObject
 {
 public:
+	WinScreen();
 	void Draw() override;
 };
 
 class LoseScreen : public GameObject
 {
 public:
+	LoseScreen();
 	void Draw() override;
 };

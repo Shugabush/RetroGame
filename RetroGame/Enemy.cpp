@@ -1,5 +1,6 @@
 #include "Enemy.h"
 #include "Utility.h"
+#include "GameManager.h"
 
 EnemyManager* EnemyManager::instance = nullptr;
 
@@ -188,6 +189,11 @@ void EnemyManager::FixUndefeatedEnemies()
 				undefeatedEnemies.push_back(enemies[c][r]);
 			}
 		}
+	}
+	if (undefeatedEnemies.size() == 0)
+	{
+		// We won the game
+		Win();
 	}
 }
 

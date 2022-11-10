@@ -1,47 +1,38 @@
 #pragma once
 #include "Utility.h"
+#include "TextObject.h"
 
-class WinScreen;
-class LoseScreen;
+class TextScreen;
+
+enum GameState
+{
+	PENDING,
+	ACTIVE,
+	VICTORY,
+	DEFEAT,
+};
+
+void Play();
+void Win();
+void Lose();
+
+extern GameState gameState;
 
 class GameManager : public GameObject
 {
-	enum GameState
-	{
-		ACTIVE,
-		VICTORY,
-		LOSS,
-	};
-
-	GameState state;
-
-	WinScreen* winScreen;
-	LoseScreen* loseScreen;
-
-	static GameManager* instance;
+	TextScreen* winScreen;
+	TextScreen* loseScreen;
 
 public:
 	GameManager();
-
-	static GameManager* Instance();
-
-	void Update() override;
-
-	void Play();
-	void Win();
-	void Lose();
 };
 
-class WinScreen : public GameObject
+class TextScreen : public GameObject
 {
-public:
-	WinScreen();
-	void Draw() override;
-};
+	TextObject text;
 
-class LoseScreen : public GameObject
-{
 public:
-	LoseScreen();
+	TextScreen();
+	TextScreen(std::string text);
 	void Draw() override;
 };

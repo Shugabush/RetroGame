@@ -29,7 +29,10 @@ void Instantiate(GameObject* obj)
 }
 void Destroy(GameObject* obj)
 {
-	objectsToDestroy.push_back(obj);
+	if (obj != nullptr)
+	{
+		objectsToDestroy.push_back(obj);
+	}
 }
 
 void Start()
@@ -38,7 +41,7 @@ void Start()
 	{
 		if (objects[i] != nullptr)
 		{
-			objects[i]->OnUpdate();
+			objects[i]->Start();
 		}
 	}
 }

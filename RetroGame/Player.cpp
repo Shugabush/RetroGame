@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Utility.h"
 #include "Bullet.h"
+#include "GameManager.h"
 
 Player::Player(int health)
 {
@@ -56,6 +57,10 @@ void Player::Shoot(Vector2 vel)
 void Player::TakeDamage()
 {
 	health--;
+	if (health <= 0)
+	{
+		Lose();
+	}
 	std::cout << health << std::endl;
 }
 

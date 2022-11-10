@@ -1,5 +1,4 @@
 #include "GameObject.h"
-#include "Utility.h"
 
 #include <typeinfo>
 #include <iostream>

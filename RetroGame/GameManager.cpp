@@ -1,57 +1,39 @@
 #include "GameManager.h"
 
-GameManager* GameManager::instance = nullptr;
+GameState gameState = ACTIVE;
 
 GameManager::GameManager()
 {
-	instance = this;
-
-	state = ACTIVE;
 	winScreen = nullptr;
 	loseScreen = nullptr;
 }
 
-GameManager* GameManager::Instance()
+void Play()
 {
-	return instance;
+	gameState = ACTIVE;
 }
 
-void GameManager::Update()
+void Win()
 {
-	
+	gameState = VICTORY;
 }
 
-void GameManager::Play()
+void Lose()
 {
-	state = ACTIVE;
+	gameState = DEFEAT;
 }
 
-void GameManager::Win()
+TextScreen::TextScreen()
 {
-	state = VICTORY;
+	text = TextObject("");
 }
 
-void GameManager::Lose()
+TextScreen::TextScreen(std::string text)
 {
-	state = LOSS;
+	this->text = text;
 }
 
-WinScreen::WinScreen()
+void TextScreen::Draw()
 {
-
-}
-
-void WinScreen::Draw()
-{
-
-}
-
-LoseScreen::LoseScreen()
-{
-
-}
-
-void LoseScreen::Draw()
-{
-
+	DrawText(text.text.c_str(), (int)position.x, (int)position.y, 25, RED);
 }

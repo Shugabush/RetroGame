@@ -24,6 +24,7 @@ void Player::Update()
 
 	position.x += GetInput() * movementSpeed;
 	position = Clamp(position, { 0, 0 }, { (float)GetScreenWidth(), (float)GetScreenHeight() });
+
 	if (timeElapsed >= shootCooldown && IsKeyPressed(KEY_SPACE))
 	{
 		timeElapsed = 0;
@@ -31,14 +32,16 @@ void Player::Update()
 		// Fire a bullet
 		Shoot({0, 5});
 	}
+
+	collider->SetBounds({ position.x, position.y, (float)rectWidth, (float)rectHeight });
 }
 
 void Player::Draw()
 {
-	//DrawTexturePro(*sprite, {50, 50}, {position.x, position.y}, {(float)(sprite->width) / 2,(float)(sprite->width) / 2}, rotation, WHITE);
 	int posX = (int)position.x - (rectWidth / 2);
 	int posY = (int)position.y - (rectHeight / 2);
 	DrawRectangle(posX, posY, rectWidth, rectHeight, RED);
+	DrawCollider();
 }
 
 void Player::Shoot(Vector2 vel)
@@ -59,6 +62,7 @@ void Player::OnCollisionStay(Collider* other)
 {
 	if (other->gameObject->name == "Enemy Bullet")
 	{
+		Destroy(other->gameObject);
 		TakeDamage();
 	}
 }

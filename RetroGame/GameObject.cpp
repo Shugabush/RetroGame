@@ -25,7 +25,6 @@ void GameObject::OnUpdate()
 {
 	collider->SetBounds({ 0, 0, 0, 0 });
 	Update();
-	
 }
 
 void GameObject::Update()

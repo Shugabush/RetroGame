@@ -165,7 +165,7 @@ void EnemyManager::DrawCollider()
 
 Enemy* EnemyManager::GetRandomEnemy()
 {
-	return undefeatedEnemies[GetRandomValue(0, undefeatedEnemies.size())];
+	return undefeatedEnemies[GetRandomValue(0, undefeatedEnemies.size() - 1)];
 }
 
 void EnemyManager::FixUndefeatedEnemies()

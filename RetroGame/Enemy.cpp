@@ -5,6 +5,7 @@ EnemyManager* EnemyManager::instance = nullptr;
 
 Enemy::Enemy(float delay = 0)
 {
+	name = "New Enemy";
 	health = 1;
 	rectWidth = 10;
 	rectHeight = 10;
@@ -67,6 +68,7 @@ EnemyManager::EnemyManager()
 	spawnRange = { 25, 25, 550, 300 };
 	shootTimer = 1;
 	timeElapsed = 0;
+	yCross = 500;
 
 	for (int c = 0; c < COLS; c++)
 	{
@@ -101,6 +103,7 @@ void Enemy::OnCollisionStay(Collider* other)
 {
 	if (other->gameObject->name == "Bullet")
 	{
+		Destroy(other->gameObject);
 		defeated = true;
 		EnemyManager::instance->reset = true;
 	}
@@ -141,6 +144,7 @@ void EnemyManager::Update()
 
 void EnemyManager::Draw()
 {
+	DrawLine(0, yCross, GetScreenWidth(), yCross, GREEN);
 	for (int c = 0; c < COLS; c++)
 	{
 		for (int r = 0; r < ROWS; r++)
@@ -196,6 +200,21 @@ int EnemyManager::LastColumn()
 			if (!enemies[c][r]->Defeated())
 			{
 				return c;
+			}
+		}
+	}
+	return 0;
+}
+
+int EnemyManager::LastRow()
+{
+	for (int r = ROWS - 1; r >= 0; r--)
+	{
+		for (int c = 0; c < COLS; c++)
+		{
+			if (!enemies[c][r]->Defeated())
+			{
+				return r;
 			}
 		}
 	}

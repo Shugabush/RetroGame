@@ -19,8 +19,6 @@ public:
 	int rectWidth;
 	int rectHeight;
 
-	
-
 	Enemy(float delay);
 
 	bool Defeated(); // read-only access to defeated bool
@@ -46,6 +44,8 @@ class EnemyManager : public GameObject
 
 	Rectangle spawnRange;
 
+	float yCross; // If any undefeated enemy is beyond this imaginary line, the game is lost
+
 	float shootTimer; // Used to determine when the enemy is ready to shoot
 	float timeElapsed; // Time elapsed since last shoot
 
@@ -70,5 +70,6 @@ public:
 	Enemy* GetRandomEnemy();
 
 	int LastColumn();
+	int LastRow();
 };
 

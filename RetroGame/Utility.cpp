@@ -83,6 +83,7 @@ void ProcessPendingObjects()
 	}
 	pendingObjects.clear();
 }
+
 void DestroyObjects()
 {
 	for (int i = 0; i < objectsToDestroy.size(); i++)

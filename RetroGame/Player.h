@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObject.h"
-#include "raylib.h"
+#include "raylib-cpp.hpp"
 
 class Player : public SpriteObject
 {

@@ -1,5 +1,4 @@
 #include "Player.h"
-#include "raylib.h"
 #include "Utility.h"
 #include "Bullet.h"
 
@@ -41,6 +40,8 @@ void Player::Draw()
 	int posX = (int)position.x - (rectWidth / 2);
 	int posY = (int)position.y - (rectHeight / 2);
 	DrawRectangle(posX, posY, rectWidth, rectHeight, RED);
+	DrawText(std::to_string(health).c_str(), (int)position.x, (int)position.y, 25, BLACK);
+
 	DrawCollider();
 }
 

@@ -1,6 +1,6 @@
 #include "Bullet.h"
 #include "Utility.h"
-#include "raylib.h"
+#include "raylib-cpp.hpp"
 #include <iostream>
 
 Bullet::Bullet() : SpriteObject()

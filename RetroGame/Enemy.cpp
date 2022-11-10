@@ -109,7 +109,7 @@ void Enemy::OnCollisionStay(Collider* other)
 void EnemyManager::Update()
 {
 	timeElapsed += GetFrameTime();
-	if (timeElapsed >= shootTimer)
+	if (timeElapsed >= shootTimer && GetRandomEnemy() != nullptr)
 	{
 		timeElapsed = 0;
 		GetRandomEnemy()->Shoot({ 0, -5 });
@@ -165,6 +165,10 @@ void EnemyManager::DrawCollider()
 
 Enemy* EnemyManager::GetRandomEnemy()
 {
+	if (undefeatedEnemies.size() == 0)
+	{
+		return nullptr;
+	}
 	return undefeatedEnemies[GetRandomValue(0, undefeatedEnemies.size() - 1)];
 }
 

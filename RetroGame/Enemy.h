@@ -1,7 +1,7 @@
 #pragma once
 #include "Utility.h"
 #include "Bullet.h"
-#include "raylib.h"
+#include "raylib-cpp.hpp"
 
 class Enemy : public GameObject
 {

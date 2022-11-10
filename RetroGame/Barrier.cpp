@@ -1,6 +1,6 @@
 #include "Barrier.h"
 #include "Utility.h"
-#include "raylib.h"
+#include "raylib-cpp.hpp"
 #include "Bullet.h"
 
 Barrier::Barrier(int durability)

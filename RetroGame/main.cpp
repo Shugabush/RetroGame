@@ -91,7 +91,22 @@ int main()
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
-        Update();
+        switch (gameState)
+        {
+        case PENDING:
+            GameManager::pendingScreen->Update();
+            break;
+        case ACTIVE:
+            Update();
+            break;
+        case VICTORY:
+            GameManager::winScreen->Update();
+            break;
+        case DEFEAT:
+            GameManager::loseScreen->Update();
+            break;
+        }
+        
 
         // Draw
         //----------------------------------------------------------------------------------
@@ -99,7 +114,21 @@ int main()
 
         ClearBackground(RAYWHITE);
 
-        Draw();
+        switch (gameState)
+        {
+        case PENDING:
+            GameManager::pendingScreen->Draw();
+            break;
+        case ACTIVE:
+            Draw();
+            break;
+        case VICTORY:
+            GameManager::winScreen->Draw();
+            break;
+        case DEFEAT:
+            GameManager::loseScreen->Draw();
+            break;
+        }
 
         EndDrawing();
 

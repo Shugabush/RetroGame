@@ -16,12 +16,14 @@ extern GameState gameState;
 
 class GameManager : public GameObject
 {
+public:
+	static TextScreen* pendingScreen;
 	static TextScreen* winScreen;
 	static TextScreen* loseScreen;
 
-public:
 	GameManager();
 
+	static void Pending();
 	static void Play();
 	static void Win();
 	static void Lose();

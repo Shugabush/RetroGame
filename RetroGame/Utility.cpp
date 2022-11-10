@@ -69,27 +69,14 @@ void Update()
 			}
 		}
 	}
+	
 }
 
 void Draw()
 {
-	switch (gameState)
+	for (int i = 0; i < objects.size(); i++)
 	{
-	case PENDING:
-		break;
-	case ACTIVE:
-		for (int i = 0; i < objects.size(); i++)
-		{
-			objects[i]->OnDraw();
-		}
-		GameManager::Play();
-		break;
-	case VICTORY:
-		GameManager::Win();
-		break;
-	case DEFEAT:
-		GameManager::Lose();
-		break;
+		objects[i]->OnDraw();
 	}
 }
 

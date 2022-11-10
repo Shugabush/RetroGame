@@ -2,12 +2,18 @@
 
 GameState gameState = ACTIVE;
 
+TextScreen* GameManager::pendingScreen = new TextScreen("Play");
 TextScreen* GameManager::winScreen = new TextScreen("Victory!");
 TextScreen* GameManager::loseScreen = new TextScreen("Defeat!");
 
 GameManager::GameManager()
 {
 	
+}
+
+void GameManager::Pending()
+{
+	gameState = PENDING;
 }
 
 void GameManager::Play()
@@ -18,13 +24,11 @@ void GameManager::Play()
 void GameManager::Win()
 {
 	gameState = VICTORY;
-	winScreen->Draw();
 }
 
 void GameManager::Lose()
 {
 	gameState = DEFEAT;
-	loseScreen->Draw();
 }
 
 void GameManager::Draw()
@@ -34,13 +38,15 @@ void GameManager::Draw()
 
 TextScreen::TextScreen()
 {
-	position = { 300, 300 };
+	position = { 260, 260 };
+	collider->SetBounds({ 1000, 1000, 1000, 1000 });
 	text = TextObject("");
 }
 
 TextScreen::TextScreen(std::string text)
 {
-	position = { 300, 300 };
+	position = { 260, 260 };
+	collider->SetBounds({ 1000, 1000, 1000, 1000 });
 	this->text = text;
 }
 

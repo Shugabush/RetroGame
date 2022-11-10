@@ -36,7 +36,10 @@ void Start()
 {
 	for (int i = 0; i < objects.size(); i++)
 	{
-		objects[i]->OnUpdate();
+		if (objects[i] != nullptr)
+		{
+			objects[i]->OnUpdate();
+		}
 	}
 }
 
@@ -44,17 +47,20 @@ void Update()
 {
 	for (int i = 0; i < objects.size(); i++)
 	{
-		objects[i]->OnUpdate();
-
-		// Check for collision
-		for (int c = 0; c < objects.size(); c++)
+		if (objects[i] != nullptr)
 		{
-			// If we're not comparing the same collider to itself
-			if (objects[c] != objects[i])
+			objects[i]->OnUpdate();
+
+			// Check for collision
+			for (int c = 0; c < objects.size(); c++)
 			{
-				if (CheckCollisionBoxes(objects[i]->collider->GetBounds(), objects[c]->collider->GetBounds()))
+				// If we're not comparing the same collider to itself
+				if (objects[c] != objects[i])
 				{
-					objects[i]->OnCollisionStay(objects[c]->collider);
+					if (CheckCollisionBoxes(objects[i]->collider->GetBounds(), objects[c]->collider->GetBounds()))
+					{
+						objects[i]->OnCollisionStay(objects[c]->collider);
+					}
 				}
 			}
 		}
@@ -120,6 +126,10 @@ bool InBounds(GameObject* obj)
 
 bool InBounds(GameObject* obj, float width, float height)
 {
+	if (obj == nullptr)
+	{
+		return false;
+	}
 	if (obj->position.x > width)
 	{
 		return false;

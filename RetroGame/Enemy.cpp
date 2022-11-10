@@ -1,6 +1,8 @@
 #include "Enemy.h"
 #include "Utility.h"
 
+EnemyManager* EnemyManager::instance = nullptr;
+
 Enemy::Enemy(float delay = 0)
 {
 	health = 1;
@@ -8,7 +10,13 @@ Enemy::Enemy(float delay = 0)
 	rectHeight = 10;
 	moveTimer = 1;
 	timeElapsed = -delay;
+	defeated = false;
 	UpdateStartingPosition();
+}
+
+bool Enemy::Defeated()
+{
+	return defeated;
 }
 
 void Enemy::UpdateStartingPosition()
@@ -19,6 +27,7 @@ void Enemy::UpdateStartingPosition()
 void Enemy::Update()
 {
 	timeElapsed += GetFrameTime();
+	collider->SetBounds({ position.x, position.y, (float)rectWidth, (float)rectHeight });
 	if (timeElapsed >= moveTimer)
 	{
 		// Time to shift the enemy over
@@ -50,26 +59,27 @@ void Enemy::ShiftDown(float yShift)
 
 EnemyManager::EnemyManager()
 {
+	instance = this;
 	name = "Enemy Manager";
-	enemies = new Enemy*[COLS];
+	enemies = new Enemy**[COLS];
 	spawnRange = { 25, 25, 550, 300 };
 	for (int c = 0; c < COLS; c++)
 	{
-		enemies[c] = new Enemy[ROWS];
+		enemies[c] = new Enemy * [ROWS];
 		float posX = spawnRange.x + (spawnRange.width * ((float)(c + 0.5f) / COLS));
 		for (int r = 0; r < ROWS; r++)
 		{
-			enemies[c][r].timeElapsed = (float)-r / ROWS;
+			enemies[c][r] = new Enemy((float)r / ROWS);
 			float posY = spawnRange.y + (spawnRange.height * ((float)(r + 0.5f) / ROWS));
-			enemies[c][r].position = {posX, posY};
-			enemies[c][r].UpdateStartingPosition();
+			enemies[c][r]->position = { posX, posY };
+			enemies[c][r]->UpdateStartingPosition();
 		}
 	}
 }
 
 EnemyManager::~EnemyManager()
 {
-	delete[] enemies;
+	
 }
 
 void EnemyManager::ShiftDown()
@@ -78,14 +88,26 @@ void EnemyManager::ShiftDown()
 	{
 		for (int r = 0; r < ROWS; r++)
 		{
-			enemies[c][r].ShiftDown(spawnRange.height / ROWS);
+			if (enemies[c][r] != nullptr)
+			{
+				enemies[c][r]->ShiftDown(spawnRange.height / ROWS);
+			}
 		}
+	}
+}
+
+void Enemy::OnCollisionStay(Collider* other)
+{
+	std::cout << "HERE" << std::endl;
+	if (other->gameObject->name == "Bullet")
+	{
+		defeated = true;
 	}
 }
 
 void EnemyManager::Update()
 {
-	if (!InBounds(&enemies[0][0], spawnRange.width + 40, spawnRange.height + 40) || !InBounds(&enemies[COLS - 1][0], spawnRange.width + 40, spawnRange.height + 40))
+	if (!InBounds(enemies[0][0], spawnRange.width + 40, spawnRange.height + 40) || !InBounds(enemies[COLS - 1][0], spawnRange.width + 40, spawnRange.height + 40))
 	{
 		std::cout << "Time to shift down!" << std::endl;
 		ShiftDown();
@@ -94,7 +116,16 @@ void EnemyManager::Update()
 	{
 		for (int r = 0; r < ROWS; r++)
 		{
-			enemies[c][r].OnUpdate();
+			for (int i = 0; i < objects.size(); i++)
+			{
+				// Check for collision
+				if (enemies[c][r]->collider->GetBounds().CheckCollision(objects[i]->collider->GetBounds()))
+				{
+					enemies[c][r]->OnCollisionStay(objects[i]->collider);
+					objects[i]->OnCollisionStay(enemies[c][r]->collider);
+				}
+			}
+			enemies[c][r]->OnUpdate();
 		}
 	}
 }
@@ -105,7 +136,10 @@ void EnemyManager::Draw()
 	{
 		for (int r = 0; r < ROWS; r++)
 		{
-			enemies[c][r].OnDraw();
+			if (!enemies[c][r]->Defeated())
+			{
+				enemies[c][r]->OnDraw();
+			}
 		}
 	}
 }
@@ -113,9 +147,4 @@ void EnemyManager::Draw()
 void EnemyManager::DrawCollider()
 {
 	DrawRectangleLines((int)spawnRange.x, (int)spawnRange.y, (int)spawnRange.width, (int)spawnRange.height, GREEN);
-}
-
-void EnemyManager::OnCollisionStay(Collider* other)
-{
-
 }

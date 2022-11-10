@@ -23,8 +23,12 @@ void GameObject::Start()
 
 void GameObject::OnUpdate()
 {
-	collider->SetBounds({ 0, 0, 0, 0 });
-	Update();
+	if (this != nullptr)
+	{
+		collider->SetBounds({ 0, 0, 0, 0 });
+		Update();
+	}
+	
 }
 
 void GameObject::Update()

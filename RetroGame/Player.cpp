@@ -48,3 +48,17 @@ void Player::Shoot(Vector2 vel)
 	bullet->velocity = vel;
 	Instantiate(bullet);
 }
+
+void Player::TakeDamage()
+{
+	health--;
+	std::cout << health << std::endl;
+}
+
+void Player::OnCollisionStay(Collider* other)
+{
+	if (other->gameObject->name == "Enemy Bullet")
+	{
+		TakeDamage();
+	}
+}

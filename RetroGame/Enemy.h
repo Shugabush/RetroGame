@@ -5,6 +5,9 @@
 
 class Enemy : public GameObject
 {
+	float shootTimer; // Used to determine when the enemy is ready to shoot
+	float timeElapsed; // Time elapsed since the last shift
+
 	int health;
 	float moveTimer; // Used to determine when the enemy should shift over
 
@@ -16,7 +19,7 @@ public:
 	int rectWidth;
 	int rectHeight;
 
-	float timeElapsed; // Time elapsed since the last shift
+	
 
 	Enemy(float delay);
 
@@ -39,9 +42,12 @@ class EnemyManager : public GameObject
 	// (not part of the main objects list in utility)
 	Enemy*** enemies;
 
-	std::vector<Enemy*> enemiesToDestroy;
+	std::vector<Enemy*> undefeatedEnemies;
 
 	Rectangle spawnRange;
+
+	float shootTimer; // Used to determine when the enemy is ready to shoot
+	float timeElapsed; // Time elapsed since last shoot
 
 public:
 	static EnemyManager* instance;
@@ -50,7 +56,6 @@ public:
 	const int COLS = 5;
 
 	EnemyManager();
-	~EnemyManager();
 
 	void ShiftDown();
 
@@ -58,6 +63,10 @@ public:
 	void Draw() override;
 
 	void DrawCollider() override;
+
+	void FixUndefeatedEnemies();
+
+	Enemy* GetRandomEnemy();
 
 	int LastColumn();
 };

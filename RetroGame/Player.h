@@ -20,4 +20,8 @@ public:
 	void Draw();
 
 	void Shoot(Vector2 vel);
+
+	void TakeDamage();
+
+	void OnCollisionStay(Collider* other) override;
 };

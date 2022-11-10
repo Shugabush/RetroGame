@@ -193,7 +193,7 @@ void EnemyManager::FixUndefeatedEnemies()
 	if (undefeatedEnemies.size() == 0)
 	{
 		// We won the game
-		Win();
+		GameManager::Win();
 	}
 }
 

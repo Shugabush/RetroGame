@@ -27,6 +27,7 @@
 
 #include "raylib.h"
 #include "GameObject.h"
+#include "GameManager.h"
 #include "Player.h"
 #include "Barrier.h"
 #include "Utility.h"
@@ -72,6 +73,9 @@ int main()
 
     EnemyManager* enemyManager = new EnemyManager();
     objects.push_back(enemyManager);
+
+    GameManager* gameManager = new GameManager();
+    objects.push_back(gameManager);
 
     InitWindow(screenWidth, screenHeight, "Space Invaders");
 

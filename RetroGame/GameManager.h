@@ -12,19 +12,21 @@ enum GameState
 	DEFEAT,
 };
 
-void Play();
-void Win();
-void Lose();
-
 extern GameState gameState;
 
 class GameManager : public GameObject
 {
-	TextScreen* winScreen;
-	TextScreen* loseScreen;
+	static TextScreen* winScreen;
+	static TextScreen* loseScreen;
 
 public:
 	GameManager();
+
+	static void Play();
+	static void Win();
+	static void Lose();
+
+	void Draw() override;
 };
 
 class TextScreen : public GameObject

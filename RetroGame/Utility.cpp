@@ -1,4 +1,5 @@
 #include "Utility.h"
+#include "GameManager.h"
 
 #include <iostream>
 
@@ -48,21 +49,24 @@ void Start()
 
 void Update()
 {
-	for (int i = 0; i < objects.size(); i++)
+	if (gameState == ACTIVE)
 	{
-		if (objects[i] != nullptr)
+		for (int i = 0; i < objects.size(); i++)
 		{
-			objects[i]->OnUpdate();
-
-			// Check for collision
-			for (int c = 0; c < objects.size(); c++)
+			if (objects[i] != nullptr)
 			{
-				// If we're not comparing the same collider to itself
-				if (objects[c] != objects[i])
+				objects[i]->OnUpdate();
+
+				// Check for collision
+				for (int c = 0; c < objects.size(); c++)
 				{
-					if (CheckCollisionBoxes(objects[i]->collider->GetBounds(), objects[c]->collider->GetBounds()))
+					// If we're not comparing the same collider to itself
+					if (objects[c] != objects[i])
 					{
-						objects[i]->OnCollisionStay(objects[c]->collider);
+						if (CheckCollisionBoxes(objects[i]->collider->GetBounds(), objects[c]->collider->GetBounds()))
+						{
+							objects[i]->OnCollisionStay(objects[c]->collider);
+						}
 					}
 				}
 			}

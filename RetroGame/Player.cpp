@@ -59,7 +59,7 @@ void Player::TakeDamage()
 	health--;
 	if (health <= 0)
 	{
-		Lose();
+		GameManager::Lose();
 	}
 	std::cout << health << std::endl;
 }

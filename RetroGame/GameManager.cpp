@@ -2,25 +2,44 @@
 
 GameState gameState = ACTIVE;
 
+TextScreen* GameManager::winScreen = new TextScreen("Victory!");
+TextScreen* GameManager::loseScreen = new TextScreen("Defeat!");
+
 GameManager::GameManager()
 {
-	winScreen = nullptr;
-	loseScreen = nullptr;
+	
 }
 
-void Play()
+void GameManager::Play()
 {
 	gameState = ACTIVE;
 }
 
-void Win()
+void GameManager::Win()
 {
 	gameState = VICTORY;
 }
 
-void Lose()
+void GameManager::Lose()
 {
 	gameState = DEFEAT;
+}
+
+void GameManager::Draw()
+{
+	switch (gameState)
+	{
+	case PENDING:
+		break;
+	case ACTIVE:
+		break;
+	case VICTORY:
+		winScreen->Draw();
+		break;
+	case DEFEAT:
+		loseScreen->Draw();
+		break;
+	}
 }
 
 TextScreen::TextScreen()

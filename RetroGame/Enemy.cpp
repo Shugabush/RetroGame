@@ -44,13 +44,13 @@ void Enemy::Shoot(Vector2 vel)
 
 void Enemy::ShiftDown(float yShift)
 {
-	startingPosition.y -= yShift;
+	startingPosition.y += yShift;
 	position = startingPosition;
 }
 
 EnemyManager::EnemyManager()
 {
-	name = "Enemy";
+	name = "Enemy Manager";
 	enemies = new Enemy*[COLS];
 	spawnRange = { 25, 25, 550, 300 };
 	for (int c = 0; c < COLS; c++)
@@ -78,7 +78,7 @@ void EnemyManager::ShiftDown()
 	{
 		for (int r = 0; r < ROWS; r++)
 		{
-			enemies[c][r].ShiftDown((float)1 / COLS);
+			enemies[c][r].ShiftDown(spawnRange.height / ROWS);
 		}
 	}
 }

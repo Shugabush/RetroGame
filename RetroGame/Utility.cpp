@@ -1,5 +1,8 @@
 #include "Utility.h"
 #include "GameManager.h"
+#include "Player.h"
+#include "Barrier.h"
+#include "Enemy.h"
 
 #include <iostream>
 
@@ -38,6 +41,7 @@ void Destroy(GameObject* obj)
 
 void StartGame()
 {
+	const int screenWidth = 600;
 	objects.clear();
 	objectsToDestroy.clear();
 	pendingObjects.clear();

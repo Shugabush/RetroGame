@@ -18,38 +18,35 @@ void GameManager::Play()
 void GameManager::Win()
 {
 	gameState = VICTORY;
+	winScreen->Draw();
 }
 
 void GameManager::Lose()
 {
 	gameState = DEFEAT;
+	loseScreen->Draw();
 }
 
 void GameManager::Draw()
 {
-	switch (gameState)
-	{
-	case PENDING:
-		break;
-	case ACTIVE:
-		break;
-	case VICTORY:
-		winScreen->Draw();
-		break;
-	case DEFEAT:
-		loseScreen->Draw();
-		break;
-	}
+	
 }
 
 TextScreen::TextScreen()
 {
+	position = { 300, 300 };
 	text = TextObject("");
 }
 
 TextScreen::TextScreen(std::string text)
 {
+	position = { 300, 300 };
 	this->text = text;
+}
+
+void TextScreen::Update()
+{
+
 }
 
 void TextScreen::Draw()

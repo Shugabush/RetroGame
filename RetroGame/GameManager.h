@@ -36,5 +36,7 @@ class TextScreen : public GameObject
 public:
 	TextScreen();
 	TextScreen(std::string text);
+
+	void Update() override;
 	void Draw() override;
 };

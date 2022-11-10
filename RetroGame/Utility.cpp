@@ -49,24 +49,21 @@ void Start()
 
 void Update()
 {
-	if (gameState == ACTIVE)
+	for (int i = 0; i < objects.size(); i++)
 	{
-		for (int i = 0; i < objects.size(); i++)
+		if (objects[i] != nullptr)
 		{
-			if (objects[i] != nullptr)
-			{
-				objects[i]->OnUpdate();
+			objects[i]->OnUpdate();
 
-				// Check for collision
-				for (int c = 0; c < objects.size(); c++)
+			// Check for collision
+			for (int c = 0; c < objects.size(); c++)
+			{
+				// If we're not comparing the same collider to itself
+				if (objects[c] != objects[i])
 				{
-					// If we're not comparing the same collider to itself
-					if (objects[c] != objects[i])
+					if (CheckCollisionBoxes(objects[i]->collider->GetBounds(), objects[c]->collider->GetBounds()))
 					{
-						if (CheckCollisionBoxes(objects[i]->collider->GetBounds(), objects[c]->collider->GetBounds()))
-						{
-							objects[i]->OnCollisionStay(objects[c]->collider);
-						}
+						objects[i]->OnCollisionStay(objects[c]->collider);
 					}
 				}
 			}
@@ -76,9 +73,23 @@ void Update()
 
 void Draw()
 {
-	for (int i = 0; i < objects.size(); i++)
+	switch (gameState)
 	{
-		objects[i]->OnDraw();
+	case PENDING:
+		break;
+	case ACTIVE:
+		for (int i = 0; i < objects.size(); i++)
+		{
+			objects[i]->OnDraw();
+		}
+		GameManager::Play();
+		break;
+	case VICTORY:
+		GameManager::Win();
+		break;
+	case DEFEAT:
+		GameManager::Lose();
+		break;
 	}
 }
 

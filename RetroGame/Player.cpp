@@ -9,6 +9,8 @@ Player::Player(int health)
 	movementSpeed = 1;
 	rectWidth = 25;
 	rectHeight = 25;
+	shootCooldown = 0.25f;
+	timeElapsed = 0;
 }
 
 void Player::Start()
@@ -18,10 +20,14 @@ void Player::Start()
 
 void Player::Update()
 {
+	timeElapsed += GetFrameTime();
+
 	position.x += GetInput() * movementSpeed;
 	position = Clamp(position, { 0, 0 }, { (float)GetScreenWidth(), (float)GetScreenHeight() });
-	if (IsKeyPressed(KEY_SPACE))
+	if (timeElapsed >= shootCooldown && IsKeyPressed(KEY_SPACE))
 	{
+		timeElapsed = 0;
+
 		// Fire a bullet
 		Shoot({0, 5});
 	}

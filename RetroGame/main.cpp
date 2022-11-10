@@ -83,13 +83,12 @@ int main()
 
         ClearBackground(RAYWHITE);
 
+        Draw();
+
         switch (gameState)
         {
         case PENDING:
             GameManager::pendingScreen->Draw();
-            break;
-        case ACTIVE:
-            Draw();
             break;
         case VICTORY:
             GameManager::winScreen->Draw();

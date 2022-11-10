@@ -69,7 +69,7 @@ EnemyManager::EnemyManager()
 	spawnRange = { 25, 25, 550, 300 };
 	shootTimer = 1;
 	timeElapsed = 0;
-	yCross = 500;
+	yCross = 400;
 
 	for (int c = 0; c < COLS; c++)
 	{
@@ -118,10 +118,19 @@ void EnemyManager::Update()
 		timeElapsed = 0;
 		GetRandomEnemy()->Shoot({ 0, -5 });
 	}
+
+	// Check if we should shift enemies down
 	if (!InBounds(enemies[0][0], spawnRange.width + 40, spawnRange.height + 40) || !InBounds(enemies[LastColumn()][0], spawnRange.width + 40, spawnRange.height + 40))
 	{
 		ShiftDown();
 	}
+
+	// Check if the any enemy has passed the yCross line
+	if (enemies[0][LastRow()]->position.y >= yCross)
+	{
+		GameManager::Lose("The enemies crossed the line!");
+	}
+
 	for (int c = 0; c < COLS; c++)
 	{
 		for (int r = 0; r < ROWS; r++)

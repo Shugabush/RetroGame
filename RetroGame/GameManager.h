@@ -24,18 +24,24 @@ public:
 	GameManager();
 
 	static void Pending();
+	static void Pending(std::string text);
+
 	static void Play();
+
 	static void Win();
+	static void Win(std::string text);
+
 	static void Lose();
+	static void Lose(std::string text);
 
 	void Draw() override;
 };
 
 class TextScreen : public GameObject
 {
+public:
 	TextObject text;
 
-public:
 	TextScreen();
 	TextScreen(std::string text);
 

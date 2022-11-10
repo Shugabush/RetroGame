@@ -8,7 +8,7 @@ Enemy::Enemy(float delay = 0)
 	health = 1;
 	rectWidth = 10;
 	rectHeight = 10;
-	moveTimer = 1;
+	moveTimer = 0.25f;
 	timeElapsed = -delay;
 	defeated = false;
 	UpdateStartingPosition();
@@ -107,7 +107,8 @@ void Enemy::OnCollisionStay(Collider* other)
 
 void EnemyManager::Update()
 {
-	if (!InBounds(enemies[0][0], spawnRange.width + 40, spawnRange.height + 40) || !InBounds(enemies[COLS - 1][0], spawnRange.width + 40, spawnRange.height + 40))
+	std::cout << LastColumn() << std::endl;
+	if (!InBounds(enemies[0][0], spawnRange.width + 40, spawnRange.height + 40) || !InBounds(enemies[LastColumn()][0], spawnRange.width + 40, spawnRange.height + 40))
 	{
 		std::cout << "Time to shift down!" << std::endl;
 		ShiftDown();
@@ -147,4 +148,19 @@ void EnemyManager::Draw()
 void EnemyManager::DrawCollider()
 {
 	DrawRectangleLines((int)spawnRange.x, (int)spawnRange.y, (int)spawnRange.width, (int)spawnRange.height, GREEN);
+}
+
+int EnemyManager::LastColumn()
+{
+	for (int c = COLS - 1; c >= 0; c--)
+	{
+		for (int r = 0; r < ROWS; r++)
+		{
+			if (!enemies[c][r]->Defeated())
+			{
+				return c;
+			}
+		}
+	}
+	return 0;
 }

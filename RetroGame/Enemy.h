@@ -58,5 +58,7 @@ public:
 	void Draw() override;
 
 	void DrawCollider() override;
+
+	int LastColumn();
 };
 

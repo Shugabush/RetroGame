@@ -1,6 +1,6 @@
 #include "GameManager.h"
 
-GameState gameState = ACTIVE;
+GameState gameState = PENDING;
 
 TextScreen* GameManager::pendingScreen = new TextScreen("Play");
 TextScreen* GameManager::winScreen = new TextScreen("Victory!");

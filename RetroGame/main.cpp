@@ -44,7 +44,7 @@ int main()
     // Initialization
     //--------------------------------------------------------------------------------------
 
-    StartGame();
+    //StartGame();
 
     InitWindow(screenWidth, screenHeight, "Space Invaders");
 

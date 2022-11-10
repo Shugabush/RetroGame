@@ -52,7 +52,11 @@ TextScreen::TextScreen(std::string text)
 
 void TextScreen::Update()
 {
-
+	if (IsMouseButtonDown(0))
+	{
+		gameState = ACTIVE;
+		StartGame();
+	}
 }
 
 void TextScreen::Draw()

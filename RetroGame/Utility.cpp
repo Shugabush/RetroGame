@@ -36,6 +36,47 @@ void Destroy(GameObject* obj)
 	}
 }
 
+void StartGame()
+{
+	objects.clear();
+	objectsToDestroy.clear();
+	pendingObjects.clear();
+
+	// Create and add the player
+	Player* player = new Player(3);
+	Texture2D playerSprite = LoadTexture("spaceship.png");
+	player->sprite = &playerSprite;
+	player->movementSpeed = 5;
+	player->position = { screenWidth / 2, 500 };
+	objects.push_back(player);
+
+	// Create and add barriers
+	Barrier* barrier1 = new Barrier(5);
+	barrier1->name = "Barrier1";
+	barrier1->position = { 125, 400 };
+	barrier1->width = 100;
+	barrier1->height = 25;
+	Barrier* barrier2 = new Barrier(5);
+	barrier2->name = "Barrier2";
+	barrier2->position = { screenWidth / 2, 400 };
+	barrier2->width = 100;
+	barrier2->height = 25;
+	Barrier* barrier3 = new Barrier(5);
+	barrier3->name = "Barrier3";
+	barrier3->position = { 475, 400 };
+	barrier3->width = 100;
+	barrier3->height = 25;
+	objects.push_back(barrier1);
+	objects.push_back(barrier2);
+	objects.push_back(barrier3);
+
+	EnemyManager* enemyManager = new EnemyManager();
+	objects.push_back(enemyManager);
+
+	GameManager* gameManager = new GameManager();
+	objects.push_back(gameManager);
+}
+
 void Start()
 {
 	for (int i = 0; i < objects.size(); i++)

@@ -16,6 +16,8 @@ extern std::vector<GameObject*> objectsToDestroy;
 void Instantiate(GameObject* obj);
 void Destroy(GameObject* obj);
 
+void StartGame();
+
 void Start();
 void Update();
 

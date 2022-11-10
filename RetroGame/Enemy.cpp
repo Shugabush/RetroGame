@@ -102,7 +102,7 @@ void Enemy::OnCollisionStay(Collider* other)
 	if (other->gameObject->name == "Bullet")
 	{
 		defeated = true;
-		EnemyManager::instance->FixUndefeatedEnemies();
+		EnemyManager::instance->reset = true;
 	}
 }
 
@@ -150,6 +150,11 @@ void EnemyManager::Draw()
 				enemies[c][r]->OnDraw();
 			}
 		}
+	}
+	if (reset)
+	{
+		FixUndefeatedEnemies();
+		reset = false;
 	}
 }
 

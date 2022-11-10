@@ -51,6 +51,7 @@ class EnemyManager : public GameObject
 
 public:
 	static EnemyManager* instance;
+	bool reset = false;
 
 	const int ROWS = 11;
 	const int COLS = 5;

@@ -13,6 +13,9 @@ extern std::vector<GameObject*> objects;
 extern std::vector<GameObject*> pendingObjects;
 extern std::vector<GameObject*> objectsToDestroy;
 
+const int screenWidth = 600;
+const int screenHeight = 600;
+
 void Instantiate(GameObject* obj);
 void Destroy(GameObject* obj);
 

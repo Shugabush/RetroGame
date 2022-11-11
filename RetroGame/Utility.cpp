@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Barrier.h"
 #include "Enemy.h"
+#include "Background.h"
 
 #include <iostream>
 
@@ -41,14 +42,19 @@ void Destroy(GameObject* obj)
 
 void StartGame()
 {
-	const int screenWidth = 600;
 	objects.clear();
 	objectsToDestroy.clear();
 	pendingObjects.clear();
 
+	// Create and add the background
+	Background* background = new Background();
+	static Texture2D backgroundSprite = LoadTexture("background.png");
+	background->sprite = &backgroundSprite;
+	objects.push_back(background);
+
 	// Create and add the player
 	Player* player = new Player(3);
-	Texture2D playerSprite = LoadTexture("spaceship.png");
+	static Texture2D playerSprite = LoadTexture("spaceship.png");
 	player->sprite = &playerSprite;
 	player->movementSpeed = 5;
 	player->position = { screenWidth / 2, 500 };

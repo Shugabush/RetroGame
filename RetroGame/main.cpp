@@ -33,9 +33,6 @@
 #include "Utility.h"
 #include "Enemy.h"
 
-const int screenWidth = 600;
-const int screenHeight = 600;
-
 //------------------------------------------------------------------------------------
 // Program main entry point
 //------------------------------------------------------------------------------------
@@ -85,8 +82,7 @@ int main()
 
         ClearBackground(RAYWHITE);
 
-        DrawTexturePro(background, { 0, 0, (float)background.width,  (float)background.height }, { 0, 0, screenWidth, screenHeight }, { 0, 0 }, 0, WHITE);
-        //DrawTexture(background, 0, 0, WHITE);
+        //DrawTexturePro(background, { 0, 0, (float)background.width,  (float)background.height }, { 0, 0, screenWidth, screenHeight }, { 0, 0 }, 0, WHITE);
 
         Draw();
         LateDraw();

@@ -85,7 +85,8 @@ int main()
 
         ClearBackground(RAYWHITE);
 
-        DrawTexture(background, 0, 0, WHITE);
+        DrawTexturePro(background, { 0, 0, (float)background.width,  (float)background.height }, { 0, 0, screenWidth, screenHeight }, { 0, 0 }, 0, WHITE);
+        //DrawTexture(background, 0, 0, WHITE);
 
         Draw();
         LateDraw();

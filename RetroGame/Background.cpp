@@ -11,12 +11,7 @@ void Background::Draw()
 		for (int r = 0; r < ROWS; r++)
 		{
 			float posY = screenHeight * ((float)r / ROWS);
-			DrawTexturePro(*sprite, { 0, 0, (float)sprite->width, (float)sprite->height}, {posX, posY, tileWidth, tileHeight}, {0, 0}, 0, WHITE);
+			DrawTexturePro(sprite, { 0, 0, (float)sprite.width, (float)sprite.height}, {posX, posY, tileWidth, tileHeight}, {0, 0}, 0, WHITE);
 		}
 	}
-}
-
-void Background::DrawCollider()
-{
-
 }

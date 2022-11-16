@@ -9,5 +9,4 @@ public:
 	const int COLS = 5;
 
 	void Draw() override;
-	void DrawCollider() override;
 };

@@ -3,7 +3,7 @@
 #include "Bullet.h"
 #include "raylib-cpp.hpp"
 
-class Enemy : public GameObject
+class Enemy : public SpriteObject
 {
 	float shootTimer; // Used to determine when the enemy is ready to shoot
 	float timeElapsed; // Time elapsed since the last shift
@@ -26,7 +26,6 @@ public:
 	void UpdateStartingPosition();
 
 	void Update() override;
-	void Draw() override;
 
 	void Shoot(Vector2 vel);
 	void ShiftDown(float yShift);
@@ -62,8 +61,6 @@ public:
 
 	void Update() override;
 	void Draw() override;
-
-	void DrawCollider() override;
 
 	void FixUndefeatedEnemies();
 

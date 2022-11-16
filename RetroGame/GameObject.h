@@ -19,8 +19,6 @@ public:
 	GameObject();
 	~GameObject();
 
-	virtual void DrawCollider();
-
 	virtual void Start();
 
 	void OnUpdate();
@@ -37,7 +35,7 @@ public:
 class SpriteObject : public GameObject
 {
 public:
-	Texture2D* sprite;
+	Texture2D sprite;
 
 	void Draw() override;
 };
@@ -47,10 +45,15 @@ class Collider
 	raylib::BoundingBox* bounds;
 
 public:
+
 	GameObject* gameObject;
 	Collider(GameObject* obj);
 	Collider(GameObject* obj, raylib::BoundingBox bounds);
 
 	raylib::BoundingBox GetBounds();
+
+	Vector3 Size();
+	Vector3 Extents();
+
 	void SetBounds(Rectangle rect);
 };

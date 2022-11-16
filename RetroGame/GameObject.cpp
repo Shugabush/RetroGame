@@ -22,7 +22,7 @@ void GameObject::Start()
 
 void GameObject::OnUpdate()
 {
-	collider->SetBounds({ 0, 0, 0, 0 });
+	//collider->SetBounds({ 0, 0, 0, 0 });
 	Update();
 }
 
@@ -34,7 +34,6 @@ void GameObject::Update()
 void GameObject::OnDraw()
 {
 	Draw();
-	DrawCollider();
 }
 
 void GameObject::Draw()
@@ -45,13 +44,6 @@ void GameObject::Draw()
 void GameObject::LateDraw()
 {
 
-}
-
-void GameObject::DrawCollider()
-{
-	int width = (int)(collider->GetBounds().max.x - collider->GetBounds().min.x);
-	int height = (int)(collider->GetBounds().max.y - collider->GetBounds().min.y);
-	DrawRectangleLines((int)position.x - (width / 2), (int)position.y - (height / 2), width, height, BLACK);
 }
 
 void GameObject::OnCollisionEnter(Collider* other)
@@ -71,10 +63,10 @@ void GameObject::OnCollisionExit(Collider* other)
 
 void SpriteObject::Draw()
 {
-	if (sprite != nullptr)
-	{
-		DrawTexture(*sprite, (int)position.x, (int)position.y, WHITE);
-	}
+	// Cache the extents and size so we don't have to call the functions more than once
+	Vector3 extents = collider->Extents();
+	Vector3 size = collider->Size();
+	DrawTexturePro(sprite, { 0, 0, (float)sprite.width, (float)sprite.height }, { position.x - extents.x, position.y - extents.y, size.x, size.y }, { 0, 0 }, 0, WHITE);
 }
 
 Collider::Collider(GameObject* obj)
@@ -93,6 +85,16 @@ Collider::Collider(GameObject* obj, raylib::BoundingBox bounds)
 raylib::BoundingBox Collider::GetBounds()
 {
 	return *bounds;
+}
+
+Vector3 Collider::Size()
+{
+	return Vector3Subtract(bounds->max, bounds->min);
+}
+
+Vector3 Collider::Extents()
+{
+	return Vector3Divide(Size(), {2, 2, 2});
 }
 
 void Collider::SetBounds(Rectangle rect)

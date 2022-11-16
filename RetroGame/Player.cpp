@@ -23,6 +23,8 @@ void Player::Update()
 	timeElapsed += GetFrameTime();
 
 	position.x += GetInput() * movementSpeed;
+
+	// Clamp player's position to the screen extents
 	position = Clamp(position, { 0, 0 }, { (float)GetScreenWidth(), (float)GetScreenHeight() });
 
 	if (timeElapsed >= shootCooldown && IsKeyPressed(KEY_SPACE))
@@ -41,8 +43,6 @@ void Player::LateDraw()
 	std::string healthString = "Health: ";
 	healthString += std::to_string(health);
 	DrawText(healthString.c_str(), 25, 25, 25, BLACK);
-
-	DrawCollider();
 }
 
 void Player::Shoot(Vector2 vel)

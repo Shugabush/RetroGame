@@ -8,8 +8,8 @@ Enemy::Enemy(float delay = 0)
 {
 	name = "New Enemy";
 	health = 1;
-	rectWidth = 10;
-	rectHeight = 10;
+	rectWidth = 25;
+	rectHeight = 20;
 	moveTimer = 5;
 	timeElapsed = -delay * 5;
 	defeated = false;
@@ -39,13 +39,6 @@ void Enemy::Update()
 	}
 }
 
-void Enemy::Draw()
-{
-	int posX = (int)position.x - (rectWidth / 2);
-	int posY = (int)position.y - (rectHeight / 2);
-	DrawRectangle(posX, posY, rectWidth, rectHeight, RED);
-}
-
 void Enemy::Shoot(Vector2 vel)
 {
 	Bullet* bullet = new Bullet();
@@ -71,6 +64,9 @@ EnemyManager::EnemyManager()
 	timeElapsed = 0;
 	yCross = 400;
 
+	// Enemy sprite
+	Texture2D sprite = LoadTexture("enemy.png");
+
 	for (int c = 0; c < COLS; c++)
 	{
 		enemies[c] = new Enemy * [ROWS];
@@ -78,6 +74,7 @@ EnemyManager::EnemyManager()
 		for (int r = 0; r < ROWS; r++)
 		{
 			enemies[c][r] = new Enemy((float)r / ROWS);
+			enemies[c][r]->sprite = sprite;
 			float posY = spawnRange.y + (spawnRange.height * ((float)(r + 0.5f) / ROWS));
 			enemies[c][r]->position = { posX, posY };
 			enemies[c][r]->UpdateStartingPosition();
@@ -170,11 +167,6 @@ void EnemyManager::Draw()
 		FixUndefeatedEnemies();
 		reset = false;
 	}
-}
-
-void EnemyManager::DrawCollider()
-{
-	DrawRectangleLines((int)spawnRange.x, (int)spawnRange.y, (int)spawnRange.width, (int)spawnRange.height, GREEN);
 }
 
 Enemy* EnemyManager::GetRandomEnemy()

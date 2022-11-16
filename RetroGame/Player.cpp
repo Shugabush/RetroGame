@@ -38,10 +38,6 @@ void Player::Update()
 
 void Player::LateDraw()
 {
-	int posX = (int)position.x - (rectWidth / 2);
-	int posY = (int)position.y - (rectHeight / 2);
-	DrawRectangle(posX, posY, rectWidth, rectHeight, RED);
-
 	std::string healthString = "Health: ";
 	healthString += std::to_string(health);
 	DrawText(healthString.c_str(), 25, 25, 25, BLACK);

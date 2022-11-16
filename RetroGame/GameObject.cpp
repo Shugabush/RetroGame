@@ -61,7 +61,7 @@ void GameObject::OnCollisionEnter(Collider* other)
 
 void GameObject::OnCollisionStay(Collider* other)
 {
-	std::cout << collider->gameObject->name << " colliding with " << other->gameObject->name << std::endl;
+	
 }
 
 void GameObject::OnCollisionExit(Collider* other)

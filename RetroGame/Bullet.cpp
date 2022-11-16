@@ -18,7 +18,6 @@ void Bullet::Update()
 	if (!InBounds(this))
 	{
 		collider->SetBounds({ size, size, size, size });
-		std::cout << "destroying" << std::endl;
 		Destroy(this);
 	}
 }

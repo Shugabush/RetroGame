@@ -4,7 +4,7 @@
 
 EnemyManager* EnemyManager::instance = nullptr;
 
-Enemy::Enemy(float delay = 0)
+Enemy::Enemy(float delay = 0, int dir = 1)
 {
 	name = "New Enemy";
 	health = 1;
@@ -12,6 +12,7 @@ Enemy::Enemy(float delay = 0)
 	rectHeight = 20;
 	moveTimer = 5;
 	timeElapsed = -delay * 5;
+	direction = dir;
 	defeated = false;
 	UpdateStartingPosition();
 }
@@ -34,7 +35,7 @@ void Enemy::Update()
 	if (timeElapsed >= moveTimer)
 	{
 		// Time to shift the enemy over
-		position.x += 5;
+		position.x += 5 * direction;
 		timeElapsed = 0;
 	}
 }
@@ -50,12 +51,15 @@ void Enemy::Shoot(Vector2 vel)
 
 void Enemy::ShiftDown(float yShift)
 {
-	startingPosition.y += yShift;
-	position = startingPosition;
+	
+	UpdateStartingPosition();
+	position.y += yShift;
+	direction *= -1; // Change direction of enemy movement
 }
 
 EnemyManager::EnemyManager()
 {
+	direction = 1;
 	instance = this;
 	name = "Enemy Manager";
 	enemies = new Enemy**[COLS];
@@ -83,8 +87,23 @@ EnemyManager::EnemyManager()
 	}
 }
 
+bool EnemyManager::ShouldShift()
+{
+	switch (direction)
+	{
+		case 1:
+			return !InBounds(enemies[LastColumn()][0], spawnRange.width + 40, spawnRange.height + 40);
+		case -1:
+			return !InBounds(enemies[0][0], spawnRange.width - 40, spawnRange.height - 40);
+		default:
+			return false;
+	}
+	return false;
+}
+
 void EnemyManager::ShiftDown()
 {
+	direction *= -1;
 	for (int c = 0; c < COLS; c++)
 	{
 		for (int r = 0; r < ROWS; r++)
@@ -117,7 +136,7 @@ void EnemyManager::Update()
 	}
 
 	// Check if we should shift enemies down
-	if (!InBounds(enemies[0][0], spawnRange.width + 40, spawnRange.height + 40) || !InBounds(enemies[LastColumn()][0], spawnRange.width + 40, spawnRange.height + 40))
+	if (ShouldShift())
 	{
 		ShiftDown();
 	}

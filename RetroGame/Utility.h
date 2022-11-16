@@ -33,6 +33,8 @@ void Quit();
 
 bool InBounds(GameObject* obj);
 bool InBounds(GameObject* obj, float width, float height);
+bool Inbounds(GameObject* obj, Vector2 size, Vector2 center);
+
 bool ObjectsOverlap(GameObject* a, GameObject* b);
 
 Vector2 Clamp(Vector2 value, Vector2 min, Vector2 max);

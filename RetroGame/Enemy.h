@@ -8,6 +8,8 @@ class Enemy : public SpriteObject
 	float shootTimer; // Used to determine when the enemy is ready to shoot
 	float timeElapsed; // Time elapsed since the last shift
 
+	int direction;
+
 	int health;
 	float moveTimer; // Used to determine when the enemy should shift over
 
@@ -19,7 +21,7 @@ public:
 	int rectWidth;
 	int rectHeight;
 
-	Enemy(float delay);
+	Enemy(float delay, int dir);
 
 	bool Defeated(); // read-only access to defeated bool
 
@@ -28,6 +30,7 @@ public:
 	void Update() override;
 
 	void Shoot(Vector2 vel);
+
 	void ShiftDown(float yShift);
 
 	void OnCollisionStay(Collider* other) override;
@@ -48,6 +51,8 @@ class EnemyManager : public GameObject
 	float shootTimer; // Used to determine when the enemy is ready to shoot
 	float timeElapsed; // Time elapsed since last shoot
 
+	int direction;
+
 public:
 	static EnemyManager* instance;
 	bool reset = false;
@@ -61,6 +66,8 @@ public:
 
 	void Update() override;
 	void Draw() override;
+
+	bool ShouldShift();
 
 	void FixUndefeatedEnemies();
 

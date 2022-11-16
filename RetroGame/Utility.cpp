@@ -217,6 +217,33 @@ bool InBounds(GameObject* obj, float width, float height)
 	return true;
 }
 
+bool Inbounds(GameObject* obj, Vector2 size, Vector2 center)
+{
+	if (obj == nullptr)
+	{
+		return false;
+	}
+
+	if (obj->position.x < center.x - size.x)
+	{
+		return false;
+	}
+	if (obj->position.x > center.x + size.x)
+	{
+		return false;
+	}
+	if (obj->position.y < center.y - size.y)
+	{
+		return false;
+	}
+	if (obj->position.y > center.y + size.y)
+	{
+		return false;
+	}
+
+	return true;
+}
+
 bool ObjectsOverlap(GameObject* a, GameObject* b)
 {
 	return false;

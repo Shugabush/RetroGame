@@ -2,6 +2,7 @@
 #include "Utility.h"
 #include "Bullet.h"
 #include "GameManager.h"
+#include "SoundPool.h"
 
 Player::Player(int health)
 {
@@ -58,6 +59,7 @@ void Player::LateDraw()
 
 void Player::Shoot(Vector2 vel)
 {
+	PlaySound(shootSound);
 	Bullet* bullet = new Bullet();
 	bullet->position = position;
 	bullet->velocity = vel;
@@ -67,6 +69,7 @@ void Player::Shoot(Vector2 vel)
 void Player::TakeDamage()
 {
 	health--;
+	PlaySound(playerKilledSound);
 	if (health <= 0)
 	{
 		GameManager::Lose();

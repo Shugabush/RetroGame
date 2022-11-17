@@ -2,6 +2,7 @@
 #include "Utility.h"
 #include "GameManager.h"
 #include "SpritePool.h"
+#include "SoundPool.h"
 
 EnemyManager* EnemyManager::instance = nullptr;
 
@@ -153,10 +154,13 @@ void Enemy::OnCollisionStay(Collider* other)
 {
 	if (other->gameObject->name == "Bullet")
 	{
-		Destroy(other->gameObject);
 		defeated = true;
 		GameManager::UpdateScore(pointValue);
 		EnemyManager::instance->reset = true;
+
+		PlaySound(invaderKilledSound);
+
+		Destroy(other->gameObject);
 	}
 }
 
@@ -318,6 +322,13 @@ void Ufo::Update()
 	{
 		// Destroy this object when it goes off screen
 		Destroy(this);
+	}
+	else
+	{
+		if (!IsSoundPlaying(ufoSounds[0]))
+		{
+			PlaySound(ufoSounds[0]);
+		}
 	}
 }
 

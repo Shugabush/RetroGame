@@ -29,6 +29,7 @@
 #include "Utility.h"
 #include "GameObject.h"
 #include "SpritePool.h"
+#include "SoundPool.h"
 #include "GameManager.h"
 #include "Player.h"
 #include "Barrier.h"
@@ -44,10 +45,14 @@ int main()
 
     InitWindow(screenWidth, screenHeight, "Space Invaders");
 
+    InitAudioDevice();
+
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     LoadTextures();
+    LoadSounds();
+
     Start();
 
     // Main game loop

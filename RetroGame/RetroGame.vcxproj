@@ -150,6 +150,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SoundPool.cpp" />
     <ClCompile Include="SpritePool.cpp" />
     <ClCompile Include="TextObject.cpp" />
     <ClCompile Include="Timer.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="SoundPool.h" />
     <ClInclude Include="SpritePool.h" />
     <ClInclude Include="TextObject.h" />
     <ClInclude Include="Timer.h" />

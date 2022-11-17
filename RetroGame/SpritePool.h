@@ -13,4 +13,4 @@ extern Texture2D ufoSprite;
 extern Texture2D barrierSprite;
 extern Texture2D bulletSprite;
 
-void LoadTextures(); // Load textures
+extern void LoadTextures(); // Load textures

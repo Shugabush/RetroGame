@@ -17,7 +17,6 @@ public:
 	void Start() override;
 	void Update() override;
 
-	void Draw() override;
 	void LateDraw() override;
 
 	void Shoot(Vector2 vel);

@@ -71,7 +71,6 @@ void Player::TakeDamage()
 	{
 		GameManager::Lose();
 	}
-	std::cout << health << std::endl;
 }
 
 void Player::OnCollisionStay(Collider* other)

@@ -157,7 +157,6 @@ void DestroyObjects()
 {
 	for (int i = 0; i < objectsToDestroy.size(); i++)
 	{
-		std::cout << objectsToDestroy[i]->name << std::endl;
 		delete objectsToDestroy[i];
 		objects.erase(std::remove(objects.begin(), objects.end(), objectsToDestroy[i]), objects.end());
 	}

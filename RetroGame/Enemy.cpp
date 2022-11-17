@@ -172,7 +172,6 @@ void EnemyManager::Update()
 	ufoTimer.Update();
 	if (ufoTimer.PastTimer())
 	{
-		std::cout << "instantiating ufo" << ::std::endl;
 		// Instantiate a ufo
 		Ufo* ufo = new Ufo();
 		Instantiate(ufo);

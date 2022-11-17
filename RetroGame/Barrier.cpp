@@ -31,7 +31,6 @@ void Barrier::OnCollisionStay(Collider* other)
 	{
 		Destroy(other->gameObject);
 		Damage();
-		std::cout << "here" << std::endl;
 	}
 }
 

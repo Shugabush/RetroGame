@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include "Timer.h"
 
 #include <typeinfo>
 #include <iostream>
@@ -80,10 +81,10 @@ void SpriteObject::OnUpdate()
 
 void SpriteObject::UpdateAnimation()
 {
-	timeElapsed += GetFrameTime();
-	if (timeElapsed >= animationTimer)
+	animationTimer.Update();
+	if (animationTimer.PastTimer())
 	{
-		timeElapsed = 0;
+		animationTimer.Reset();
 		// Time to switch to the next sprite
 		currentSprite++;
 		if (currentSprite >= sprites.size())

@@ -1,5 +1,6 @@
 #pragma once
 #include "raylib-cpp.hpp"
+#include "Timer.h"
 
 #include <iostream>
 
@@ -35,13 +36,11 @@ public:
 
 class SpriteObject : public GameObject
 {
-	float timeElapsed; // Time elapsed since last sprite switch
-
 protected:
 	int currentSprite;
 
 public:
-	float animationTimer = 5;
+	Timer animationTimer = Timer(5);
 
 	std::vector<Texture2D> sprites;
 

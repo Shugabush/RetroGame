@@ -11,7 +11,7 @@ Enemy::Enemy(float delay = 0, int dir = 1)
 	rectWidth = 25;
 	rectHeight = 20;
 	moveTimer = 5;
-	timeElapsed = -delay * 5;
+	moveTimer.Delay(delay);
 	direction = dir;
 	defeated = false;
 	pointValue = 10;
@@ -35,14 +35,14 @@ void Enemy::UpdateStartingPosition()
 
 void Enemy::Update()
 {
-	timeElapsed += GetFrameTime();
+	moveTimer.Update();
 	collider->SetBounds({ position.x, position.y, (float)rectWidth, (float)rectHeight });
 
-	if (timeElapsed >= moveTimer)
+	if (moveTimer.PastTimer())
 	{
 		// Time to shift the enemy over
 		position.x += 5 * direction;
-		timeElapsed = 0;
+		moveTimer.Reset();
 	}
 }
 
@@ -71,8 +71,7 @@ EnemyManager::EnemyManager()
 	name = "Enemy Manager";
 	enemies = new Enemy**[COLS];
 	spawnRange = { 25, 25, 550, 300 };
-	shootTimer = 1;
-	timeElapsed = 0;
+	shootTimer = Timer(1);
 	yCross = 400;
 
 	for (int c = 0; c < COLS; c++)
@@ -161,10 +160,10 @@ void Enemy::OnCollisionStay(Collider* other)
 
 void EnemyManager::Update()
 {
-	timeElapsed += GetFrameTime();
-	if (timeElapsed >= shootTimer && GetRandomEnemy() != nullptr)
+	shootTimer.Update();
+	if (shootTimer.PastTimer() && GetRandomEnemy() != nullptr)
 	{
-		timeElapsed = 0;
+		shootTimer.Reset();
 		GetRandomEnemy()->Shoot({ 0, -5 });
 	}
 
@@ -288,4 +287,14 @@ int EnemyManager::LastRow()
 		}
 	}
 	return 0;
+}
+
+Ufo::Ufo()
+{
+	pointValue = 100;
+}
+
+void Ufo::Update()
+{
+
 }

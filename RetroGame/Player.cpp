@@ -9,8 +9,7 @@ Player::Player(int health)
 	movementSpeed = 1;
 	rectWidth = 25;
 	rectHeight = 25;
-	shootCooldown = 0.25f;
-	timeElapsed = 0;
+	shootTimer = Timer(0.25f);
 	sprites.push_back(playerSprite);
 }
 
@@ -21,16 +20,16 @@ void Player::Start()
 
 void Player::Update()
 {
-	timeElapsed += GetFrameTime();
+	shootTimer.Update();
 
 	position.x += GetInput() * movementSpeed;
 
 	// Clamp player's position to the screen extents
 	position = Clamp(position, { 0, 0 }, { (float)GetScreenWidth(), (float)GetScreenHeight() });
 
-	if (timeElapsed >= shootCooldown && IsKeyPressed(KEY_SPACE))
+	if (shootTimer.PastTimer() && IsKeyPressed(KEY_SPACE))
 	{
-		timeElapsed = 0;
+		shootTimer.Reset();
 
 		// Fire a bullet
 		Shoot({0, 5});

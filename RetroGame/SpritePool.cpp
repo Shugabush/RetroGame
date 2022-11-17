@@ -7,6 +7,7 @@ Texture2D playerSprite;
 Texture2D smallEnemySprites[2];
 Texture2D normalEnemySprites[2];
 Texture2D bigEnemySprites[2];
+Texture2D ufo;
 
 Texture2D barrierSprite;
 Texture2D bulletSprite;
@@ -16,6 +17,8 @@ void LoadTextures()
 	backgroundSprite = LoadTexture("background.png");
 
 	playerSprite = LoadTexture("player.png");
+
+	ufo = LoadTexture("Ufo.png");
 
 	smallEnemySprites[0] = LoadTexture("enemySmall.png");
 	smallEnemySprites[1] = LoadTexture("enemySmall2.png");

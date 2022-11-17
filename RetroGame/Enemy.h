@@ -5,13 +5,11 @@
 
 class Enemy : public SpriteObject
 {
-	float shootTimer; // Used to determine when the enemy is ready to shoot
-	float timeElapsed; // Time elapsed since the last shift
+	Timer moveTimer;
 
 	int direction;
 
 	int health;
-	float moveTimer; // Used to determine when the enemy should shift over
 
 	Vector2 startingPosition;
 
@@ -40,6 +38,14 @@ public:
 	void OnCollisionStay(Collider* other) override;
 };
 
+class Ufo : public Enemy
+{
+public:
+	Ufo();
+
+	void Update() override;
+};
+
 class EnemyManager : public GameObject
 {
 	// Enemies that are stored specifically in this class
@@ -52,8 +58,7 @@ class EnemyManager : public GameObject
 
 	float yCross; // If any undefeated enemy is beyond this imaginary line, the game is lost
 
-	float shootTimer; // Used to determine when the enemy is ready to shoot
-	float timeElapsed; // Time elapsed since last shoot
+	Timer shootTimer;
 
 	int direction; // What direction are the enemies moving in (1 or -1)?
 

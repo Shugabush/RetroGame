@@ -5,8 +5,7 @@
 class Player : public SpriteObject
 {
 	int health;
-	float shootCooldown;
-	float timeElapsed;
+	Timer shootTimer;
 
 public:
 	float movementSpeed;

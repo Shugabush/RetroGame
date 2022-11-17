@@ -143,7 +143,7 @@ void EnemyManager::Update()
 	}
 
 	// Check if the any enemy has passed the yCross line
-	if (enemies[0][LastRow()]->position.y >= yCross)
+	if (enemies[LastColumn()][LastRow()]->position.y >= yCross)
 	{
 		GameManager::Lose("The enemies crossed the line!");
 	}
@@ -205,7 +205,7 @@ void EnemyManager::FixUndefeatedEnemies()
 	{
 		for (int r = 0; r < ROWS; r++)
 		{
-			if (!enemies[c][r]->Defeated())
+			if (enemies[c][r] != nullptr && !enemies[c][r]->Defeated())
 			{
 				undefeatedEnemies.push_back(enemies[c][r]);
 			}
@@ -224,7 +224,7 @@ int EnemyManager::LastColumn()
 	{
 		for (int r = 0; r < ROWS; r++)
 		{
-			if (!enemies[c][r]->Defeated())
+			if (enemies[c][r] != nullptr && !enemies[c][r]->Defeated())
 			{
 				return c;
 			}
@@ -239,7 +239,7 @@ int EnemyManager::LastRow()
 	{
 		for (int c = 0; c < COLS; c++)
 		{
-			if (!enemies[c][r]->Defeated())
+			if (enemies[c][r] != nullptr && !enemies[c][r]->Defeated())
 			{
 				return r;
 			}

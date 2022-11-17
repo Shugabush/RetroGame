@@ -12,7 +12,10 @@ GameObject::GameObject()
 }
 GameObject::~GameObject()
 {
-	delete collider;
+	if (collider != nullptr)
+	{
+		delete collider;
+	}
 }
 
 void GameObject::Start()

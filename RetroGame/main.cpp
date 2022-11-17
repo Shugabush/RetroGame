@@ -41,8 +41,6 @@ int main()
     // Initialization
     //--------------------------------------------------------------------------------------
 
-    //StartGame();
-
     InitWindow(screenWidth, screenHeight, "Space Invaders");
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
@@ -59,6 +57,8 @@ int main()
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
+
+        // Figure out game state
         switch (gameState)
         {
         case PENDING:
@@ -81,8 +81,6 @@ int main()
         BeginDrawing();
 
         ClearBackground(RAYWHITE);
-
-        //DrawTexturePro(background, { 0, 0, (float)background.width,  (float)background.height }, { 0, 0, screenWidth, screenHeight }, { 0, 0 }, 0, WHITE);
 
         Draw();
         LateDraw();

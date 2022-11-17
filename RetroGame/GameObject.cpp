@@ -54,7 +54,7 @@ void GameObject::LateDraw()
 // This is only to visualize where the colliders are
 void GameObject::DrawCollider()
 {
-	DrawCubeWires({ position.x, position.y , 0}, collider->Extents().x, collider->Extents().y, 0, WHITE);
+	//DrawCubeWires({ position.x, position.y , 0}, collider->Extents().x, collider->Extents().y, 0, WHITE);
 }
 
 void GameObject::OnCollisionEnter(Collider* other)

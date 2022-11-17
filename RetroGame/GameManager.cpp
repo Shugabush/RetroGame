@@ -5,16 +5,24 @@ GameState gameState = PENDING;
 TextScreen* GameManager::pendingScreen = new TextScreen("Click to play");
 TextScreen* GameManager::winScreen = new TextScreen("Victory!\nClick to replay");
 TextScreen* GameManager::loseScreen = new TextScreen("Defeat!\nClick to try again");
+TextObject* GameManager::scoreText = new TextObject("0");
+int GameManager::score = 0;
 
 GameManager::GameManager()
 {
-	
+	scoreText->position = { 250, 30 };
+}
+
+void GameManager::UpdateScore(int value)
+{
+	score += value;
+	scoreText->text = std::to_string(score);
 }
 
 void GameManager::Pending()
 {
 	gameState = PENDING;
-	pendingScreen->text.text = "Play";
+	pendingScreen->text = "Play";
 }
 
 void GameManager::Pending(std::string text)
@@ -31,7 +39,7 @@ void GameManager::Play()
 void GameManager::Win()
 {
 	gameState = VICTORY;
-	winScreen->text.text = "Victory!\nClick to replay";
+	winScreen->text = "Victory!\nClick to replay";
 }
 
 void GameManager::Win(std::string text)
@@ -43,25 +51,30 @@ void GameManager::Win(std::string text)
 void GameManager::Lose()
 {
 	gameState = DEFEAT;
-	loseScreen->text.text = "Defeat!\nClick to try again";
+	loseScreen->text = "Defeat!\nClick to try again";
 }
 
 void GameManager::Lose(std::string text)
 {
 	gameState = DEFEAT;
-	loseScreen->text.text = text;
+	loseScreen->text = text;
+}
+
+void GameManager::Update()
+{
+	scoreText->Update();
 }
 
 void GameManager::Draw()
 {
-	
+	scoreText->LateDraw();
 }
 
 TextScreen::TextScreen()
 {
 	position = { 300, 300 };
 	collider->SetBounds({ 1000, 1000, 1000, 1000 });
-	text = TextObject("");
+	text = "";
 }
 
 TextScreen::TextScreen(std::string text)
@@ -83,5 +96,5 @@ void TextScreen::Update()
 void TextScreen::LateDraw()
 {
 	const int textSize = 25;
-	DrawText(text.text.c_str(), (int)position.x - (text.text.length() * (textSize / 5)), (int)position.y - (text.text.length() * (textSize / 5)), textSize, DARKBLUE);
+	DrawText(text.c_str(), (int)position.x - (text.length() * (textSize / 5)), (int)position.y - (text.length() * (textSize / 5)), textSize, DARKBLUE);
 }

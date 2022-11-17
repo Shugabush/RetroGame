@@ -21,7 +21,13 @@ public:
 	static TextScreen* winScreen;
 	static TextScreen* loseScreen;
 
+	static TextObject* scoreText; // Display score
+
+	static int score; // How many points we have
+
 	GameManager();
+
+	static void UpdateScore(int value); // Add a value to our score and display it
 
 	static void Pending();
 	static void Pending(std::string text);
@@ -34,13 +40,14 @@ public:
 	static void Lose();
 	static void Lose(std::string text);
 
+	void Update() override;
 	void Draw() override;
 };
 
 class TextScreen : public GameObject
 {
 public:
-	TextObject text;
+	std::string text;
 
 	TextScreen();
 	TextScreen(std::string text);

@@ -16,12 +16,12 @@ class Enemy : public SpriteObject
 	Vector2 startingPosition;
 
 	bool defeated;
-
-	bool fastMode; // Set this to true when this enemy is the only one left
 	
 public:
 	int rectWidth;
 	int rectHeight;
+
+	int pointValue; // How many points is this enemy worth when defeated?
 
 	Enemy(float delay, int dir);
 
@@ -55,7 +55,7 @@ class EnemyManager : public GameObject
 	float shootTimer; // Used to determine when the enemy is ready to shoot
 	float timeElapsed; // Time elapsed since last shoot
 
-	int direction;
+	int direction; // What direction are the enemies moving in (1 or -1)?
 
 public:
 	static EnemyManager* instance;
@@ -65,8 +65,8 @@ public:
 	const int NORMALROWS = 3; // Normal enemy sprite rows
 	// The remaining rows will be filled with small enemy sprites
 
-	const int ROWS = 11;
-	const int COLS = 5;
+	const int ROWS = 11; // Total enemy rows
+	const int COLS = 5; // Total enemy columns
 
 	EnemyManager();
 

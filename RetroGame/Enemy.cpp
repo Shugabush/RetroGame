@@ -14,7 +14,7 @@ Enemy::Enemy(float delay = 0, int dir = 1)
 	timeElapsed = -delay * 5;
 	direction = dir;
 	defeated = false;
-	fastMode = false;
+	pointValue = 10;
 	UpdateStartingPosition();
 }
 
@@ -89,16 +89,19 @@ EnemyManager::EnemyManager()
 
 			if (r < BIGROWS)
 			{
+				enemies[c][r]->pointValue = 40;
 				sprite = bigEnemySprites[0];
 				sprite2 = bigEnemySprites[1];
 			}
 			else if (r < BIGROWS + NORMALROWS)
 			{
+				enemies[c][r]->pointValue = 20;
 				sprite = normalEnemySprites[0];
 				sprite2 = normalEnemySprites[1];
 			}
 			else
 			{
+				enemies[c][r]->pointValue = 10;
 				enemies[c][r]->rectWidth = 20;
 				enemies[c][r]->rectHeight = 20;
 				sprite = smallEnemySprites[0];
@@ -151,6 +154,7 @@ void Enemy::OnCollisionStay(Collider* other)
 	{
 		Destroy(other->gameObject);
 		defeated = true;
+		GameManager::UpdateScore(pointValue);
 		EnemyManager::instance->reset = true;
 	}
 }

@@ -34,6 +34,7 @@ void GameManager::Pending(std::string text)
 void GameManager::Play()
 {
 	gameState = ACTIVE;
+	scoreText->text = std::to_string(score);
 }
 
 void GameManager::Win()
@@ -52,6 +53,7 @@ void GameManager::Lose()
 {
 	gameState = DEFEAT;
 	loseScreen->text = "Defeat!\nClick to try again";
+	score = 0;
 }
 
 void GameManager::Lose(std::string text)
@@ -65,7 +67,7 @@ void GameManager::Update()
 	scoreText->Update();
 }
 
-void GameManager::Draw()
+void GameManager::LateDraw()
 {
 	scoreText->LateDraw();
 }
@@ -88,7 +90,7 @@ void TextScreen::Update()
 {
 	if (IsMouseButtonDown(0))
 	{
-		gameState = ACTIVE;
+		GameManager::Play();
 		StartGame();
 	}
 }

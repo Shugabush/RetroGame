@@ -41,7 +41,7 @@ public:
 	static void Lose(std::string text);
 
 	void Update() override;
-	void Draw() override;
+	void LateDraw() override;
 };
 
 class TextScreen : public GameObject

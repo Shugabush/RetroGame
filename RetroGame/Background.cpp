@@ -3,7 +3,7 @@
 
 Background::Background()
 {
-	sprite = LoadTexture("background.png");
+	sprites.push_back(LoadTexture("background.png"));
 }
 
 void Background::Draw()
@@ -16,7 +16,7 @@ void Background::Draw()
 		for (int r = 0; r < ROWS; r++)
 		{
 			float posY = screenHeight * ((float)r / ROWS);
-			DrawTexturePro(sprite, { 0, 0, (float)sprite.width, (float)sprite.height}, {posX, posY, tileWidth, tileHeight}, {0, 0}, 0, WHITE);
+			DrawTexturePro(sprites[currentSprite], {0, 0, (float)sprites[currentSprite].width, (float)sprites[currentSprite].height}, {posX, posY, tileWidth, tileHeight}, {0, 0}, 0, WHITE);
 		}
 	}
 }

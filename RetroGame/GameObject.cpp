@@ -72,12 +72,33 @@ void GameObject::OnCollisionExit(Collider* other)
 
 }
 
+void SpriteObject::OnUpdate()
+{
+	UpdateAnimation();
+	Update();
+}
+
+void SpriteObject::UpdateAnimation()
+{
+	timeElapsed += GetFrameTime();
+	if (timeElapsed >= animationTimer)
+	{
+		timeElapsed = 0;
+		// Time to switch to the next sprite
+		currentSprite++;
+		if (currentSprite >= sprites.size())
+		{
+			currentSprite = 0;
+		}
+	}
+}
+
 void SpriteObject::Draw()
 {
 	// Cache the extents and size so we don't have to call the functions more than once
 	Vector3 extents = collider->Extents();
 	Vector3 size = collider->Size();
-	DrawTexturePro(sprite, { 0, 0, (float)sprite.width, (float)sprite.height }, { position.x, position.y, size.x, size.y}, {extents.x, extents.y}, rotation, WHITE);
+	DrawTexturePro(sprites[currentSprite], {0, 0, (float)sprites[currentSprite].width, (float)sprites[currentSprite].height}, {position.x, position.y, size.x, size.y}, {extents.x, extents.y}, rotation, WHITE);
 }
 
 Collider::Collider(GameObject* obj)

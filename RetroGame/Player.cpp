@@ -11,7 +11,7 @@ Player::Player(int health)
 	rectHeight = 25;
 	shootCooldown = 0.25f;
 	timeElapsed = 0;
-	sprite = LoadTexture("player.png");
+	sprites.push_back(playerSprite);
 }
 
 void Player::Start()
@@ -46,7 +46,7 @@ void Player::Draw()
 		// Cache the extents and size so we don't have to call the functions more than once
 		Vector3 extents = collider->Extents();
 		Vector3 size = collider->Size();
-		DrawTexturePro(sprite, { 0, 0, (float)sprite.width, (float)sprite.height }, { position.x - extents.x, position.y - extents.y, size.x, size.y }, { 0, 0 }, rotation * DEG2RAD, WHITE);
+		DrawTexturePro(sprites[currentSprite], { 0, 0, (float)sprites[currentSprite].width, (float)sprites[currentSprite].height}, {position.x - extents.x, position.y - extents.y, size.x, size.y}, {0, 0}, rotation * DEG2RAD, WHITE);
 	}
 }
 

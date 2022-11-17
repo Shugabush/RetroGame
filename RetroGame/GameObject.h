@@ -22,9 +22,9 @@ public:
 
 	virtual void Start();
 
-	void OnUpdate();
+	virtual void OnUpdate();
 
-	void OnDraw();
+	virtual void OnDraw();
 
 	virtual void LateDraw();
 
@@ -35,8 +35,18 @@ public:
 
 class SpriteObject : public GameObject
 {
+	float timeElapsed; // Time elapsed since last sprite switch
+
+protected:
+	int currentSprite;
+
 public:
-	Texture2D sprite;
+	float animationTimer = 5;
+
+	std::vector<Texture2D> sprites;
+
+	void OnUpdate() override;
+	void UpdateAnimation(); // Update sprite animation
 
 	void Draw() override;
 };
@@ -46,7 +56,6 @@ class Collider
 	raylib::BoundingBox* bounds;
 
 public:
-
 	GameObject* gameObject;
 	Collider(GameObject* obj);
 	Collider(GameObject* obj, raylib::BoundingBox bounds);

@@ -9,7 +9,8 @@ Barrier::Barrier(int durability)
 	this->durability = durability;
 	width = 25;
 	height = 25;
-	sprite = LoadTexture("barrier.png");
+	currentSprite = 0;
+	sprites.push_back(barrierSprite);
 }
 
 void Barrier::Update()

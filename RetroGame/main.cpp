@@ -26,11 +26,12 @@
 #include <vector>
 
 #include "raylib.h"
+#include "Utility.h"
 #include "GameObject.h"
+#include "SpritePool.h"
 #include "GameManager.h"
 #include "Player.h"
 #include "Barrier.h"
-#include "Utility.h"
 #include "Enemy.h"
 
 //------------------------------------------------------------------------------------
@@ -46,9 +47,8 @@ int main()
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
+    LoadTextures();
     Start();
-
-    Texture2D background = LoadTexture("background.png");
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key

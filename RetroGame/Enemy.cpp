@@ -75,9 +75,6 @@ EnemyManager::EnemyManager()
 	timeElapsed = 0;
 	yCross = 400;
 
-	// Enemy sprite
-	Texture2D sprite = LoadTexture("enemy.png");
-
 	for (int c = 0; c < COLS; c++)
 	{
 		enemies[c] = new Enemy * [ROWS];
@@ -85,7 +82,9 @@ EnemyManager::EnemyManager()
 		for (int r = 0; r < ROWS; r++)
 		{
 			enemies[c][r] = new Enemy((float)r / ROWS);
-			enemies[c][r]->sprite = sprite;
+			enemies[c][r]->sprites.push_back(smallEnemySprites[0]);
+			enemies[c][r]->sprites.push_back(smallEnemySprites[1]);
+
 			float posY = spawnRange.y + (spawnRange.height * ((float)(r + 0.5f) / ROWS));
 			enemies[c][r]->position = { posX, posY };
 			enemies[c][r]->UpdateStartingPosition();

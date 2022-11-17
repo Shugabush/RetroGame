@@ -8,7 +8,7 @@ Bullet::Bullet() : SpriteObject()
 	name = "Bullet";
 	size = 25;
 	velocity = { 0, 0 };
-	sprite = LoadTexture("bullet.png");
+	sprites.push_back(bulletSprite);
 }
 
 void Bullet::Update()

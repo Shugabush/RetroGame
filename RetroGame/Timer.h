@@ -8,6 +8,8 @@ struct Timer
 
 	void Update(); // Update time elapsed
 	void Reset(); // Reset time elapsed
+	void Set(float value);
+	void Factor(float value);
 	void Delay(float delay); // Add a delay to the timer (subtract the value from time elapsed)
 
 	bool PastTimer(); // Has time elapsed passed the timer?

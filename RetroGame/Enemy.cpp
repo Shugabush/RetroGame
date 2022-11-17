@@ -25,9 +25,9 @@ bool Enemy::Defeated()
 	return defeated;
 }
 
-void Enemy::FastMode()
+void Enemy::MoveFaster(float factor)
 {
-	moveTimer = 0.2f;
+	moveTimer.Factor(1.0f / factor);
 }
 
 void Enemy::UpdateStartingPosition()
@@ -262,16 +262,10 @@ void EnemyManager::FixUndefeatedEnemies()
 	// Cache undefeated enemies size
 	int enemiesLeft = undefeatedEnemies.size();
 
-	switch (enemiesLeft)
+	if (enemiesLeft == 0)
 	{
-	case 0:
 		// We won the game
 		GameManager::Win();
-		break;
-	case 1:
-		// Make the last enemy move faster
-		undefeatedEnemies[0]->FastMode();
-		break;
 	}
 }
 

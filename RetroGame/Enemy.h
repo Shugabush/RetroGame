@@ -25,7 +25,7 @@ public:
 
 	bool Defeated(); // Read-only access to defeated bool
 
-	void FastMode(); // Significantly reduce the move timer
+	void MoveFaster(float factor); // Reduce the move timer
 
 	void UpdateStartingPosition();
 

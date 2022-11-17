@@ -39,6 +39,9 @@ class SpriteObject : public GameObject
 protected:
 	int currentSprite;
 
+	float WidthToHeight(); // Sprite ratio (width divided by height)
+	float HeightToWidth(); // Sprite ratio (height divided by width)
+
 public:
 	Timer animationTimer = Timer(5);
 

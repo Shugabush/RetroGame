@@ -73,6 +73,16 @@ void GameObject::OnCollisionExit(Collider* other)
 
 }
 
+float SpriteObject::WidthToHeight()
+{
+	return (float)sprites[currentSprite].width / sprites[currentSprite].height;
+}
+
+float SpriteObject::HeightToWidth()
+{
+	return (float)sprites[currentSprite].height / sprites[currentSprite].width;
+}
+
 void SpriteObject::OnUpdate()
 {
 	UpdateAnimation();
@@ -99,6 +109,14 @@ void SpriteObject::Draw()
 	// Cache the extents and size so we don't have to call the functions more than once
 	Vector3 extents = collider->Extents();
 	Vector3 size = collider->Size();
+
+	float widthToHeight = WidthToHeight();
+
+	if (widthToHeight < 1)
+	{
+		size.x *= widthToHeight;
+	}
+
 	DrawTexturePro(sprites[currentSprite], {0, 0, (float)sprites[currentSprite].width, (float)sprites[currentSprite].height}, {position.x, position.y, size.x, size.y}, {extents.x, extents.y}, rotation, WHITE);
 }
 

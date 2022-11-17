@@ -22,6 +22,15 @@ void Timer::Reset()
 	timeElapsed = 0;
 }
 
+void Timer::Set(float value)
+{
+	timer = value;
+}
+void Timer::Factor(float value)
+{
+	timer *= value;
+}
+
 void Timer::Delay(float delay)
 {
 	timeElapsed -= delay;

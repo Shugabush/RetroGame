@@ -10,6 +10,7 @@ class GameObject
 protected:
 	virtual void Update();
 	virtual void Draw();
+	void DrawCollider();
 public:
 	std::string name;
 	Vector2 position;

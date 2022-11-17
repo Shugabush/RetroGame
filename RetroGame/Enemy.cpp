@@ -46,6 +46,7 @@ void Enemy::Shoot(Vector2 vel)
 	bullet->name = "Enemy Bullet";
 	bullet->position = position;
 	bullet->velocity = vel;
+	bullet->rotation = 180;
 	Instantiate(bullet);
 }
 

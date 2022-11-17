@@ -16,6 +16,7 @@ void Bullet::Update()
 	position.x += velocity.x;
 	position.y -= velocity.y;
 	collider->SetBounds({ size, size, size, size });
+
 	if (!InBounds(this))
 	{
 		Destroy(this);

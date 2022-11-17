@@ -11,6 +11,7 @@ Player::Player(int health)
 	rectHeight = 25;
 	shootCooldown = 0.25f;
 	timeElapsed = 0;
+	sprite = LoadTexture("player.png");
 }
 
 void Player::Start()

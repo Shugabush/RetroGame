@@ -9,6 +9,7 @@ Barrier::Barrier(int durability)
 	this->durability = durability;
 	width = 25;
 	height = 25;
+	sprite = LoadTexture("barrier.png");
 }
 
 void Barrier::Update()
@@ -18,11 +19,8 @@ void Barrier::Update()
 	collider->SetBounds({ (float)posX, (float)posY, (float)width, (float)height });
 }
 
-void Barrier::Draw()
-{	
-	int posX = (int)position.x - (width / 2);
-	int posY = (int)position.y - (height / 2);
-	DrawRectangle(posX, posY, width, height, BROWN);
+void Barrier::LateDraw()
+{
 	DrawText(std::to_string(durability).c_str(), (int)position.x, (int)position.y, 25, RED);
 }
 

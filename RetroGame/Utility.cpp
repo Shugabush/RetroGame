@@ -48,14 +48,10 @@ void StartGame()
 
 	// Create and add the background
 	Background* background = new Background();
-	static Texture2D backgroundSprite = LoadTexture("background.png");
-	background->sprite = backgroundSprite;
 	objects.push_back(background);
 
 	// Create and add the player
 	Player* player = new Player(3);
-	static Texture2D playerSprite = LoadTexture("player.png");
-	player->sprite = playerSprite;
 	player->movementSpeed = 5;
 	player->position = { screenWidth / 2, 500 };
 	objects.push_back(player);

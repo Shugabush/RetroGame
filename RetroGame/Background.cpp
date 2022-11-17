@@ -1,6 +1,11 @@
 #include "Background.h"
 #include "Utility.h"
 
+Background::Background()
+{
+	sprite = LoadTexture("background.png");
+}
+
 void Background::Draw()
 {
 	float tileWidth = (float)screenWidth / COLS;

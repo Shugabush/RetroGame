@@ -6,8 +6,9 @@
 Bullet::Bullet() : SpriteObject()
 {
 	name = "Bullet";
-	size = 5;
+	size = 25;
 	velocity = { 0, 0 };
+	sprite = LoadTexture("bullet.png");
 }
 
 void Bullet::Update()
@@ -17,12 +18,6 @@ void Bullet::Update()
 	collider->SetBounds({ size, size, size, size });
 	if (!InBounds(this))
 	{
-		collider->SetBounds({ size, size, size, size });
 		Destroy(this);
 	}
-}
-
-void Bullet::Draw()
-{
-	DrawCircle((int)position.x + (size / 4), (int)position.y + (size / 4), size, BLACK);
 }

@@ -10,5 +10,4 @@ public:
 	float size;
 
 	void Update() override;
-	void Draw() override;
 };

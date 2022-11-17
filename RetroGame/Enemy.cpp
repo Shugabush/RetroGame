@@ -81,11 +81,34 @@ EnemyManager::EnemyManager()
 		float posX = spawnRange.x + (spawnRange.width * ((float)(c + 0.5f) / COLS));
 		for (int r = 0; r < ROWS; r++)
 		{
-			enemies[c][r] = new Enemy((float)r / ROWS);
-			enemies[c][r]->sprites.push_back(smallEnemySprites[0]);
-			enemies[c][r]->sprites.push_back(smallEnemySprites[1]);
-
 			float posY = spawnRange.y + (spawnRange.height * ((float)(r + 0.5f) / ROWS));
+			enemies[c][r] = new Enemy((float)r / ROWS);
+
+			Texture2D sprite;
+			Texture2D sprite2;
+
+			if (r < BIGROWS)
+			{
+				sprite = bigEnemySprites[0];
+				sprite2 = bigEnemySprites[1];
+			}
+			else if (r < BIGROWS + NORMALROWS)
+			{
+				sprite = normalEnemySprites[0];
+				sprite2 = normalEnemySprites[1];
+			}
+			else
+			{
+				enemies[c][r]->rectWidth = 20;
+				enemies[c][r]->rectHeight = 20;
+				sprite = smallEnemySprites[0];
+				sprite2 = smallEnemySprites[1];
+			}
+			
+			enemies[c][r]->sprites.push_back(sprite);
+			enemies[c][r]->sprites.push_back(sprite2);
+
+			
 			enemies[c][r]->position = { posX, posY };
 			enemies[c][r]->UpdateStartingPosition();
 			undefeatedEnemies.push_back(enemies[c][r]);

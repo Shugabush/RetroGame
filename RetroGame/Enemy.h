@@ -61,7 +61,11 @@ public:
 	static EnemyManager* instance;
 	bool reset = false;
 
-	const int ROWS = 5;
+	const int BIGROWS = 3; // Big enemy sprite rows
+	const int NORMALROWS = 3; // Normal enemy sprite rows
+	// The remaining rows will be filled with small enemy sprites
+
+	const int ROWS = 11;
 	const int COLS = 5;
 
 	EnemyManager();

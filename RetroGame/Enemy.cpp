@@ -14,12 +14,18 @@ Enemy::Enemy(float delay = 0, int dir = 1)
 	timeElapsed = -delay * 5;
 	direction = dir;
 	defeated = false;
+	fastMode = false;
 	UpdateStartingPosition();
 }
 
 bool Enemy::Defeated()
 {
 	return defeated;
+}
+
+void Enemy::FastMode()
+{
+	moveTimer = 0.2f;
 }
 
 void Enemy::UpdateStartingPosition()
@@ -211,10 +217,20 @@ void EnemyManager::FixUndefeatedEnemies()
 			}
 		}
 	}
-	if (undefeatedEnemies.size() == 0)
+
+	// Cache undefeated enemies size
+	int enemiesLeft = undefeatedEnemies.size();
+
+	switch (enemiesLeft)
 	{
+	case 0:
 		// We won the game
 		GameManager::Win();
+		break;
+	case 1:
+		// Make the last enemy move faster
+		undefeatedEnemies[0]->FastMode();
+		break;
 	}
 }
 

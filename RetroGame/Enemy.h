@@ -16,6 +16,8 @@ class Enemy : public SpriteObject
 	Vector2 startingPosition;
 
 	bool defeated;
+
+	bool fastMode; // Set this to true when this enemy is the only one left
 	
 public:
 	int rectWidth;
@@ -23,7 +25,9 @@ public:
 
 	Enemy(float delay, int dir);
 
-	bool Defeated(); // read-only access to defeated bool
+	bool Defeated(); // Read-only access to defeated bool
+
+	void FastMode(); // Significantly reduce the move timer
 
 	void UpdateStartingPosition();
 
@@ -57,7 +61,7 @@ public:
 	static EnemyManager* instance;
 	bool reset = false;
 
-	const int ROWS = 11;
+	const int ROWS = 5;
 	const int COLS = 5;
 
 	EnemyManager();

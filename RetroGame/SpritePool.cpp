@@ -14,21 +14,21 @@ Texture2D bulletSprite;
 
 void LoadTextures()
 {
-	backgroundSprite = LoadTexture("background.png");
+	backgroundSprite = LoadTexture("Sprites/background.png");
 
-	playerSprite = LoadTexture("player.png");
+	playerSprite = LoadTexture("Sprites/player.png");
 
-	ufoSprite = LoadTexture("Ufo.png");
+	ufoSprite = LoadTexture("Sprites/Ufo.png");
 
-	smallEnemySprites[0] = LoadTexture("enemySmall.png");
-	smallEnemySprites[1] = LoadTexture("enemySmall2.png");
+	smallEnemySprites[0] = LoadTexture("Sprites/enemySmall.png");
+	smallEnemySprites[1] = LoadTexture("Sprites/enemySmall2.png");
 
-	normalEnemySprites[0] = LoadTexture("enemyNormal.png");
-	normalEnemySprites[1] = LoadTexture("enemyNormal2.png");
+	normalEnemySprites[0] = LoadTexture("Sprites/enemyNormal.png");
+	normalEnemySprites[1] = LoadTexture("Sprites/enemyNormal2.png");
 
-	bigEnemySprites[0] = LoadTexture("enemyBig.png");
-	bigEnemySprites[1] = LoadTexture("enemyBig2.png");
+	bigEnemySprites[0] = LoadTexture("Sprites/enemyBig.png");
+	bigEnemySprites[1] = LoadTexture("Sprites/enemyBig2.png");
 
-	barrierSprite = LoadTexture("barrier.png");
-	bulletSprite = LoadTexture("bullet.png");
+	barrierSprite = LoadTexture("Sprites/barrier.png");
+	bulletSprite = LoadTexture("Sprites/bullet.png");
 }

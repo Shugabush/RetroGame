@@ -3,7 +3,7 @@
 
 Background::Background()
 {
-	sprites.push_back(LoadTexture("background.png"));
+	sprites.push_back(backgroundSprite);
 }
 
 void Background::Draw()

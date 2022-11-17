@@ -39,6 +39,17 @@ void Player::Update()
 	collider->SetBounds({ position.x, position.y, (float)rectWidth, (float)rectHeight });
 }
 
+void Player::Draw()
+{
+	if (health > 0)
+	{
+		// Cache the extents and size so we don't have to call the functions more than once
+		Vector3 extents = collider->Extents();
+		Vector3 size = collider->Size();
+		DrawTexturePro(sprite, { 0, 0, (float)sprite.width, (float)sprite.height }, { position.x - extents.x, position.y - extents.y, size.x, size.y }, { 0, 0 }, rotation * DEG2RAD, WHITE);
+	}
+}
+
 void Player::LateDraw()
 {
 	std::string healthString = "Health: ";

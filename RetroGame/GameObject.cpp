@@ -47,9 +47,11 @@ void GameObject::LateDraw()
 
 }
 
+// Disable this function for the build,
+// This is only to visualize where the colliders are
 void GameObject::DrawCollider()
 {
-	DrawCubeWires({ position.x, position.y , 0}, collider->Extents().x, collider->Extents().y, 2, WHITE);
+	DrawCubeWires({ position.x, position.y , 0}, collider->Extents().x, collider->Extents().y, 0, WHITE);
 }
 
 void GameObject::OnCollisionEnter(Collider* other)
@@ -72,7 +74,7 @@ void SpriteObject::Draw()
 	// Cache the extents and size so we don't have to call the functions more than once
 	Vector3 extents = collider->Extents();
 	Vector3 size = collider->Size();
-	DrawTexturePro(sprite, { 0, 0, (float)sprite.width, (float)sprite.height }, { position.x - extents.x, position.y - extents.y, size.x, size.y }, { 0, 0 }, rotation * DEG2RAD, WHITE);
+	DrawTexturePro(sprite, { 0, 0, (float)sprite.width, (float)sprite.height }, { position.x, position.y, size.x, size.y}, {extents.x, extents.y}, rotation, WHITE);
 }
 
 Collider::Collider(GameObject* obj)

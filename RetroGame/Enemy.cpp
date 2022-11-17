@@ -1,6 +1,7 @@
 #include "Enemy.h"
 #include "Utility.h"
 #include "GameManager.h"
+#include "SpritePool.h"
 
 EnemyManager* EnemyManager::instance = nullptr;
 
@@ -72,6 +73,7 @@ EnemyManager::EnemyManager()
 	enemies = new Enemy**[COLS];
 	spawnRange = { 25, 25, 550, 300 };
 	shootTimer = Timer(1);
+	ufoTimer = Timer(10);
 	yCross = 400;
 
 	for (int c = 0; c < COLS; c++)
@@ -81,7 +83,7 @@ EnemyManager::EnemyManager()
 		for (int r = 0; r < ROWS; r++)
 		{
 			float posY = spawnRange.y + (spawnRange.height * ((float)(r + 0.5f) / ROWS));
-			enemies[c][r] = new Enemy((float)r / ROWS);
+			enemies[c][r] = new Enemy((float)r * 5 / ROWS);
 
 			Texture2D sprite;
 			Texture2D sprite2;
@@ -165,6 +167,17 @@ void EnemyManager::Update()
 	{
 		shootTimer.Reset();
 		GetRandomEnemy()->Shoot({ 0, -5 });
+	}
+
+	ufoTimer.Update();
+	if (ufoTimer.PastTimer())
+	{
+		std::cout << "instantiating ufo" << ::std::endl;
+		// Instantiate a ufo
+		Ufo* ufo = new Ufo();
+		Instantiate(ufo);
+
+		ufoTimer.Reset();
 	}
 
 	// Check if we should shift enemies down
@@ -292,9 +305,29 @@ int EnemyManager::LastRow()
 Ufo::Ufo()
 {
 	pointValue = 100;
+	sprites.push_back(ufoSprite);
+	rectWidth = 25;
+	rectHeight = 25;
+	position = { 0, 25 };
 }
 
 void Ufo::Update()
 {
+	collider->SetBounds({ position.x, position.y, (float)rectWidth, (float)rectHeight });
+	position.x += 5;
+	if (!InBounds(this))
+	{
+		// Destroy this object when it goes off screen
+		Destroy(this);
+	}
+}
 
+void Ufo::OnCollisionStay(Collider* other)
+{
+	if (other->gameObject->name == "Bullet")
+	{
+		GameManager::UpdateScore(pointValue);
+		Destroy(other->gameObject);
+		Destroy(this);
+	}
 }

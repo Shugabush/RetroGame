@@ -44,6 +44,8 @@ public:
 	Ufo();
 
 	void Update() override;
+
+	void OnCollisionStay(Collider* other) override;
 };
 
 class EnemyManager : public GameObject
@@ -59,6 +61,7 @@ class EnemyManager : public GameObject
 	float yCross; // If any undefeated enemy is beyond this imaginary line, the game is lost
 
 	Timer shootTimer;
+	Timer ufoTimer; // Determines when a ufo can move across the top of the screen
 
 	int direction; // What direction are the enemies moving in (1 or -1)?
 

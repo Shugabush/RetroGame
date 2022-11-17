@@ -11,6 +11,7 @@ extern Texture2D bigEnemySprites[2];
 extern Texture2D ufoSprite;
 
 extern Texture2D barrierSprite;
-extern Texture2D bulletSprite;
+extern Texture2D playerBulletSprites[4];
+extern Texture2D enemyBulletSprites[4];
 
 extern void LoadTextures(); // Load textures

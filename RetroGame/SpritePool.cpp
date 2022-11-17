@@ -10,7 +10,8 @@ Texture2D bigEnemySprites[2];
 Texture2D ufoSprite;
 
 Texture2D barrierSprite;
-Texture2D bulletSprite;
+Texture2D playerBulletSprites[4];
+Texture2D enemyBulletSprites[4];
 
 void LoadTextures()
 {
@@ -30,5 +31,14 @@ void LoadTextures()
 	bigEnemySprites[1] = LoadTexture("Sprites/enemyBig2.png");
 
 	barrierSprite = LoadTexture("Sprites/barrier.png");
-	bulletSprite = LoadTexture("Sprites/bullet.png");
+
+	playerBulletSprites[0] = LoadTexture("Sprites/playerbullet.png");
+	playerBulletSprites[1] = LoadTexture("Sprites/playerbullet2.png");
+	playerBulletSprites[2] = LoadTexture("Sprites/playerbullet3.png");
+	playerBulletSprites[3] = LoadTexture("Sprites/playerbullet4.png");
+
+	enemyBulletSprites[0] = LoadTexture("Sprites/enemybullet.png");
+	enemyBulletSprites[1] = LoadTexture("Sprites/enemybullet2.png");
+	enemyBulletSprites[2] = LoadTexture("Sprites/enemybullet3.png");
+	enemyBulletSprites[3] = LoadTexture("Sprites/enemybullet4.png");
 }

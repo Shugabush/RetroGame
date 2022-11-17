@@ -8,7 +8,7 @@ Bullet::Bullet() : SpriteObject()
 	name = "Bullet";
 	size = 25;
 	velocity = { 0, 0 };
-	sprites.push_back(bulletSprite);
+	animationTimer = Timer(0.25f);
 }
 
 void Bullet::Update()

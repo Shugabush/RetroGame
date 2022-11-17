@@ -61,6 +61,10 @@ void Player::Shoot(Vector2 vel)
 {
 	PlaySound(shootSound);
 	Bullet* bullet = new Bullet();
+	bullet->sprites.push_back(playerBulletSprites[0]);
+	bullet->sprites.push_back(playerBulletSprites[1]);
+	bullet->sprites.push_back(playerBulletSprites[2]);
+	bullet->sprites.push_back(playerBulletSprites[3]);
 	bullet->position = position;
 	bullet->velocity = vel;
 	Instantiate(bullet);

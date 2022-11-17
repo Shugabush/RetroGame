@@ -51,6 +51,10 @@ void Enemy::Update()
 void Enemy::Shoot(Vector2 vel)
 {
 	Bullet* bullet = new Bullet();
+	bullet->sprites.push_back(enemyBulletSprites[0]);
+	bullet->sprites.push_back(enemyBulletSprites[1]);
+	bullet->sprites.push_back(enemyBulletSprites[2]);
+	bullet->sprites.push_back(enemyBulletSprites[3]);
 	bullet->name = "Enemy Bullet";
 	bullet->position = position;
 	bullet->velocity = vel;

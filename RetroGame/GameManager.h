@@ -23,6 +23,8 @@ public:
 
 	static TextObject* scoreText; // Display score
 
+	static ScoreAdvanceTable* scoreTable;
+
 	static int score; // How many points we have
 	static int roundsCompleted; // How many rounds have we completed?
 
@@ -40,18 +42,6 @@ public:
 
 	static void Lose();
 	static void Lose(std::string text);
-
-	void Update() override;
-	void LateDraw() override;
-};
-
-class TextScreen : public GameObject
-{
-public:
-	std::string text;
-
-	TextScreen();
-	TextScreen(std::string text);
 
 	void Update() override;
 	void LateDraw() override;

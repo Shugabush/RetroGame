@@ -6,6 +6,9 @@ TextScreen* GameManager::pendingScreen = new TextScreen("Click to play\nPress Es
 TextScreen* GameManager::winScreen = new TextScreen("Victory!\nClick to replay");
 TextScreen* GameManager::loseScreen = new TextScreen("Defeat!\nClick to try again");
 TextObject* GameManager::scoreText = new TextObject("0");
+
+ScoreAdvanceTable* GameManager::scoreTable = new ScoreAdvanceTable();
+
 int GameManager::score = 0;
 int GameManager::roundsCompleted = 0;
 
@@ -74,33 +77,4 @@ void GameManager::Update()
 void GameManager::LateDraw()
 {
 	scoreText->LateDraw();
-}
-
-TextScreen::TextScreen()
-{
-	position = { 350, 400 };
-	collider->SetBounds({ 1000, 1000, 1000, 1000 });
-	text = "";
-}
-
-TextScreen::TextScreen(std::string text)
-{
-	position = { 350, 400 };
-	collider->SetBounds({ 1000, 1000, 1000, 1000 });
-	this->text = text;
-}
-
-void TextScreen::Update()
-{
-	if (IsMouseButtonDown(0))
-	{
-		GameManager::Play();
-		StartGame();
-	}
-}
-
-void TextScreen::LateDraw()
-{
-	const int textSize = 25;
-	DrawText(text.c_str(), (int)position.x - (text.length() * (textSize / 5)), (int)position.y - (text.length() * (textSize / 5)), textSize, DARKBLUE);
 }

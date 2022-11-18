@@ -16,3 +16,23 @@ public:
 	TextObject();
 	TextObject(std::string text);
 };
+
+class TextScreen : public GameObject
+{
+public:
+	std::string text;
+
+	TextScreen();
+	TextScreen(std::string text);
+
+	void Update() override;
+	void LateDraw() override;
+};
+
+class ScoreAdvanceTable : public GameObject
+{
+public:
+	TextScreen* text;
+
+	void LateDraw() override;
+};

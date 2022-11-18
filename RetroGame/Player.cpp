@@ -3,6 +3,7 @@
 #include "Bullet.h"
 #include "GameManager.h"
 #include "SoundPool.h"
+#include "Explosion.h"
 
 Player::Player(int health)
 {
@@ -78,6 +79,17 @@ void Player::TakeDamage()
 	if (health <= 0)
 	{
 		GameManager::Lose();
+
+		// Create explosion
+		Explosion* explosion = new Explosion();
+		explosion->sprites[0] = playerExplosionSprites[0];
+		explosion->sprites.push_back(playerExplosionSprites[1]);
+		explosion->color = color;
+		explosion->position = position;
+		explosion->width = width;
+		explosion->width = height;
+
+		Instantiate(explosion);
 	}
 }
 

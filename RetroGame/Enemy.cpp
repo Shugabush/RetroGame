@@ -132,7 +132,7 @@ bool EnemyManager::ShouldShift()
 		case 1:
 			return !InBounds(enemies[LastColumn()][0], spawnRange.width + 40, spawnRange.height + 40);
 		case -1:
-			return enemies[LastColumn()][0]->position.x < 40 || enemies[LastColumn()][0]->position.y < 40;
+			return enemies[0][0]->position.x < 40 || enemies[0][0]->position.y < 40;
 		default:
 			return false;
 	}

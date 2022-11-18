@@ -94,6 +94,7 @@ void GameManager::Lose()
 void GameManager::Lose(std::string text)
 {
 	gameState = DEFEAT;
+	score = 0;
 	loseScreen->text = text;
 }
 

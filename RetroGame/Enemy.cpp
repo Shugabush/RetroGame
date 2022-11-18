@@ -164,7 +164,7 @@ void Enemy::OnCollisionStay(Collider* other)
 		GameManager::UpdateScore(pointValue);
 		EnemyManager::instance->reset = true;
 
-		float speedFactor = 1.01f + (Clamp(GameManager::roundsCompleted, 0, 3) * 0.01f);
+		float speedFactor = 1.01f + (Clamp(GameManager::roundsCompleted, 0, 5) * 0.02f);
 		songSpeed += 0.005f;
 		SetMusicPitch(song, songSpeed);
 

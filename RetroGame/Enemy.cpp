@@ -13,7 +13,7 @@ Enemy::Enemy(float delay = 0, int dir = 1)
 	health = 1;
 	width = 25;
 	height = 20;
-	moveTimer = 5;
+	moveTimer = 1;
 	moveTimer.Delay(delay);
 	direction = dir;
 	defeated = false;
@@ -131,9 +131,9 @@ bool EnemyManager::ShouldShift()
 	switch (direction)
 	{
 		case 1:
-			return !InBounds(enemies[LastColumn()][0], spawnRange.width + 40, spawnRange.height + 40);
+			return enemies[LastColumn()][0]->position.x > screenWidth - 40;
 		case -1:
-			return enemies[0][0]->position.x < 40 || enemies[0][0]->position.y < 40;
+			return enemies[FirstColumn()][0]->position.x < 40;
 		default:
 			return false;
 	}
@@ -227,9 +227,9 @@ void EnemyManager::Update()
 						enemies[c][r]->OnCollisionStay(objects[i]->collider);
 						objects[i]->OnCollisionStay(enemies[c][r]->collider);
 					}
-					enemies[c][r]->OnUpdate();
 				}
 			}
+			enemies[c][r]->OnUpdate();
 		}
 	}
 }

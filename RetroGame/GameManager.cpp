@@ -7,6 +7,7 @@ TextScreen* GameManager::winScreen = new TextScreen("Victory!\nClick to replay")
 TextScreen* GameManager::loseScreen = new TextScreen("Defeat!\nClick to try again");
 TextObject* GameManager::scoreText = new TextObject("0");
 int GameManager::score = 0;
+int GameManager::roundsCompleted = 0;
 
 GameManager::GameManager()
 {
@@ -40,7 +41,7 @@ void GameManager::Play()
 void GameManager::Win()
 {
 	gameState = VICTORY;
-	winScreen->text = "Victory!\nClick to replay";
+	winScreen->text = "Victory!\nClick to replay\nPress escape to exit";
 }
 
 void GameManager::Win(std::string text)
@@ -52,8 +53,9 @@ void GameManager::Win(std::string text)
 void GameManager::Lose()
 {
 	gameState = DEFEAT;
-	loseScreen->text = "Defeat!\nClick to try again";
+	loseScreen->text = "Defeat!\nClick to try again\nPress escape to exit";
 	score = 0;
+	roundsCompleted = 0;
 }
 
 void GameManager::Lose(std::string text)
@@ -75,14 +77,14 @@ void GameManager::LateDraw()
 
 TextScreen::TextScreen()
 {
-	position = { 300, 300 };
+	position = { 350, 400 };
 	collider->SetBounds({ 1000, 1000, 1000, 1000 });
 	text = "";
 }
 
 TextScreen::TextScreen(std::string text)
 {
-	position = { 300, 300 };
+	position = { 350, 400 };
 	collider->SetBounds({ 1000, 1000, 1000, 1000 });
 	this->text = text;
 }

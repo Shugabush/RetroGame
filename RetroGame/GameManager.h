@@ -24,6 +24,7 @@ public:
 	static TextObject* scoreText; // Display score
 
 	static int score; // How many points we have
+	static int roundsCompleted; // How many rounds have we completed?
 
 	GameManager();
 

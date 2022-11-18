@@ -13,9 +13,11 @@ class Enemy : public SpriteObject
 	Vector2 startingPosition;
 
 	bool defeated;
-	
+
 public:
 	int pointValue; // How many points is this enemy worth when defeated?
+
+	bool playInvaderSound; // Should this enemy play the fast invader sound?
 
 	Enemy(float delay, int dir);
 

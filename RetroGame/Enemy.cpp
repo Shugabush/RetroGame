@@ -18,6 +18,7 @@ Enemy::Enemy(float delay = 0, int dir = 1)
 	direction = dir;
 	defeated = false;
 	pointValue = 10;
+	playInvaderSound = false;
 	UpdateStartingPosition();
 }
 
@@ -46,6 +47,11 @@ void Enemy::Update()
 		// Time to shift the enemy over
 		position.x += 5 * direction;
 		moveTimer.Reset();
+
+		if (playInvaderSound)
+		{
+			PlaySound(fastInvaderSounds[GetRandomValue(0, 3)]);
+		}
 	}
 }
 
@@ -124,6 +130,7 @@ EnemyManager::EnemyManager()
 			undefeatedEnemies.push_back(enemies[c][r]);
 		}
 	}
+	enemies[0][0]->playInvaderSound = true; // Let the first enemy play the invader sound
 }
 
 bool EnemyManager::ShouldShift()

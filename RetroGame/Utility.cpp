@@ -11,6 +11,8 @@ std::vector<GameObject*> objects;
 std::vector<GameObject*> pendingObjects;
 std::vector<GameObject*> objectsToDestroy;
 
+float yCross = 0;
+
 int GetInput()
 {
 	int input = 0;

@@ -3,6 +3,7 @@
 
 #include <typeinfo>
 #include <iostream>
+#include "Utility.h"
 
 GameObject::GameObject()
 {
@@ -85,6 +86,14 @@ float SpriteObject::HeightToWidth()
 
 void SpriteObject::OnUpdate()
 {
+	if (position.y >= yCross)
+	{
+		color = GREEN;
+	}
+	else
+	{
+		color = WHITE;
+	}
 	UpdateAnimation();
 	Update();
 }
@@ -117,7 +126,7 @@ void SpriteObject::Draw()
 		size.x *= widthToHeight;
 	}
 
-	DrawTexturePro(sprites[currentSprite], {0, 0, (float)sprites[currentSprite].width, (float)sprites[currentSprite].height}, {position.x, position.y, size.x, size.y}, {extents.x, extents.y}, rotation, WHITE);
+	DrawTexturePro(sprites[currentSprite], {0, 0, (float)sprites[currentSprite].width, (float)sprites[currentSprite].height}, {position.x, position.y, size.x, size.y}, {extents.x, extents.y}, rotation, color);
 }
 
 Collider::Collider(GameObject* obj)

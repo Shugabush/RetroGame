@@ -14,6 +14,8 @@ extern std::vector<GameObject*> objects;
 extern std::vector<GameObject*> pendingObjects;
 extern std::vector<GameObject*> objectsToDestroy;
 
+extern float yCross; // If any undefeated enemy is beyond this imaginary line, the game is lost
+
 const int screenWidth = 600;
 const int screenHeight = 600;
 

@@ -58,8 +58,6 @@ class EnemyManager : public GameObject
 
 	Rectangle spawnRange;
 
-	float yCross; // If any undefeated enemy is beyond this imaginary line, the game is lost
-
 	Timer shootTimer;
 	Timer ufoTimer; // Determines when a ufo can move across the top of the screen
 
@@ -69,7 +67,7 @@ public:
 	static EnemyManager* instance;
 	bool reset = false;
 
-	const int BIGROWS = 3; // Big enemy sprite rows
+	const int SMALLROWS = 3; // Big enemy sprite rows
 	const int NORMALROWS = 3; // Normal enemy sprite rows
 	// The remaining rows will be filled with small enemy sprites
 

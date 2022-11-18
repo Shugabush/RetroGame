@@ -93,13 +93,15 @@ EnemyManager::EnemyManager()
 			Texture2D sprite;
 			Texture2D sprite2;
 
-			if (r < BIGROWS)
+			if (r < SMALLROWS)
 			{
 				enemies[c][r]->pointValue = 40;
-				sprite = bigEnemySprites[0];
-				sprite2 = bigEnemySprites[1];
+				enemies[c][r]->rectWidth = 20;
+				enemies[c][r]->rectHeight = 20;
+				sprite = smallEnemySprites[0];
+				sprite2 = smallEnemySprites[1];
 			}
-			else if (r < BIGROWS + NORMALROWS)
+			else if (r < SMALLROWS + NORMALROWS)
 			{
 				enemies[c][r]->pointValue = 20;
 				sprite = normalEnemySprites[0];
@@ -108,10 +110,8 @@ EnemyManager::EnemyManager()
 			else
 			{
 				enemies[c][r]->pointValue = 10;
-				enemies[c][r]->rectWidth = 20;
-				enemies[c][r]->rectHeight = 20;
-				sprite = smallEnemySprites[0];
-				sprite2 = smallEnemySprites[1];
+				sprite = bigEnemySprites[0];
+				sprite2 = bigEnemySprites[1];
 			}
 			
 			enemies[c][r]->sprites.push_back(sprite);
@@ -314,6 +314,7 @@ Ufo::Ufo()
 
 void Ufo::Update()
 {
+	color = RED;
 	collider->SetBounds({ position.x, position.y, (float)rectWidth, (float)rectHeight });
 	position.x += 5;
 	if (!InBounds(this))

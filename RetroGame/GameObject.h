@@ -44,6 +44,7 @@ protected:
 
 public:
 	Timer animationTimer = Timer(5);
+	Color color = WHITE;
 
 	std::vector<Texture2D> sprites;
 

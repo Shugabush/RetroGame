@@ -66,17 +66,13 @@ void PendingScreen::Update()
 // Hard-coded layout of text and images to draw
 void PendingScreen::LateDraw()
 {
-	if (gameState == PENDING)
-	{
-		int posX = screenWidth / 2;
-		int posY = screenHeight / 2;
+	DrawText("Play", 265, 150, 25, WHITE);
+	DrawText("Space Invaders", 200, 200, 25, WHITE);
 
-		DrawText("Play", 265, 150, 25, WHITE);
-		DrawText("Space Invaders", 200, 200, 25, WHITE);
+	DrawText("*Score Advance Table*", 150, 260, 25, WHITE);
 
-		DrawText("*Score Advance Table*", posX, posY, 25, WHITE);
-		posX += 15;
-		posY += 25;
-		DrawText("= ? Mystery", posX, posY, 25, WHITE);
-	}
+	// Draw ufo sprite and text
+	//DrawTexturePro(sprites[currentSprite], {0, 0, (float)sprites[currentSprite].width, (float)sprites[currentSprite].height}, {position.x, position.y, size.x, size.y}, {extents.x, extents.y}, rotation, color);
+	DrawTexturePro(ufoSprite, { 0, 0, (float)ufoSprite.width, (float)ufoSprite.height }, { 215, 305, 25, 15 }, { 0, 0 }, 0, WHITE);
+	DrawText("= ? Mystery", 250, 300, 25, WHITE);
 }

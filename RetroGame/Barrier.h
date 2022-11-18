@@ -7,7 +7,6 @@ class Barrier : public SpriteObject
 
 public:
 	Barrier(int durability);
-	int width, height;
 
 	void Update() override;
 	void LateDraw() override;

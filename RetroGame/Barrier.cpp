@@ -3,7 +3,7 @@
 #include "raylib-cpp.hpp"
 #include "Bullet.h"
 
-Barrier::Barrier(int durability)
+Barrier::Barrier(int durability) : SpriteObject()
 {
 	name = "Barrier";
 	this->durability = durability;

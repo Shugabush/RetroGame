@@ -6,16 +6,17 @@
 Bullet::Bullet() : SpriteObject()
 {
 	name = "Bullet";
-	size = 25;
 	velocity = { 0, 0 };
 	animationTimer = Timer(0.25f);
+	width = 10;
+	height = 25;
 }
 
 void Bullet::Update()
 {
 	position.x += velocity.x;
 	position.y -= velocity.y;
-	collider->SetBounds({ size, size, size, size });
+	collider->SetBounds({ position.x, position.y, (float)width, (float)height});
 
 	if (!InBounds(this))
 	{

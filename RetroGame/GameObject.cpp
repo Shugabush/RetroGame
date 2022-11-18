@@ -56,7 +56,7 @@ void GameObject::LateDraw()
 // This is only to visualize where the colliders are
 void GameObject::DrawCollider()
 {
-	//DrawCubeWires({ position.x, position.y , 0}, collider->Extents().x, collider->Extents().y, 0, WHITE);
+	//DrawCubeWires({ position.x, position.y , 0}, collider->Size().x, collider->Size().y, 0, WHITE);
 }
 
 void GameObject::OnCollisionEnter(Collider* other)
@@ -72,16 +72,6 @@ void GameObject::OnCollisionStay(Collider* other)
 void GameObject::OnCollisionExit(Collider* other)
 {
 
-}
-
-float SpriteObject::WidthToHeight()
-{
-	return (float)sprites[currentSprite].width / sprites[currentSprite].height;
-}
-
-float SpriteObject::HeightToWidth()
-{
-	return (float)sprites[currentSprite].height / sprites[currentSprite].width;
 }
 
 void SpriteObject::OnUpdate()
@@ -118,13 +108,6 @@ void SpriteObject::Draw()
 	// Cache the extents and size so we don't have to call the functions more than once
 	Vector3 extents = collider->Extents();
 	Vector3 size = collider->Size();
-
-	float widthToHeight = WidthToHeight();
-
-	if (widthToHeight < 1)
-	{
-		size.x *= widthToHeight;
-	}
 
 	DrawTexturePro(sprites[currentSprite], {0, 0, (float)sprites[currentSprite].width, (float)sprites[currentSprite].height}, {position.x, position.y, size.x, size.y}, {extents.x, extents.y}, rotation, color);
 }

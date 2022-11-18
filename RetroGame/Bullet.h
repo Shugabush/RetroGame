@@ -7,7 +7,6 @@ class Bullet : public SpriteObject
 public:
 	Bullet();
 	Vector2 velocity;
-	float size;
 
 	void Update() override;
 

@@ -2,7 +2,7 @@
 
 GameState gameState = PENDING;
 
-TextScreen* GameManager::pendingScreen = new TextScreen("Click to play");
+TextScreen* GameManager::pendingScreen = new TextScreen("Click to play\nPress Escape to quit");
 TextScreen* GameManager::winScreen = new TextScreen("Victory!\nClick to replay");
 TextScreen* GameManager::loseScreen = new TextScreen("Defeat!\nClick to try again");
 TextObject* GameManager::scoreText = new TextObject("0");

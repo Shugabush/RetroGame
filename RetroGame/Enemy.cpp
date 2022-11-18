@@ -388,9 +388,9 @@ void Ufo::Update()
 	}
 	else
 	{
-		if (!IsSoundPlaying(ufoSounds[0]))
+		if (!IsSoundPlaying(ufoSounds[1]))
 		{
-			PlaySound(ufoSounds[0]);
+			PlaySound(ufoSounds[1]);
 		}
 	}
 }
@@ -402,6 +402,7 @@ void Ufo::OnCollisionStay(Collider* other)
 		GameManager::UpdateScore(pointValue);
 		Destroy(other->gameObject);
 		Destroy(this);
+		PlaySound(ufoSounds[0]);
 
 		// Create explosion
 		Explosion* explosion = new Explosion();

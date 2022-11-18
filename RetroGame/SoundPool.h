@@ -1,6 +1,8 @@
 #pragma once
 #include "raylib-cpp.hpp"
 
+extern Music song;
+
 extern Sound fastInvaderSounds[4];
 
 extern Sound invaderKilledSound;

@@ -1,5 +1,7 @@
 #include "SoundPool.h"
 
+Music song;
+
 Sound fastInvaderSounds[4];
 
 Sound invaderKilledSound;
@@ -11,6 +13,8 @@ Sound shootSound;
 
 void LoadSounds()
 {
+	song = LoadMusicStream("Sounds/spaceinvaders.mp3");
+
 	fastInvaderSounds[0] = LoadSound("Sounds/fastinvader1.wav");
 	fastInvaderSounds[1] = LoadSound("Sounds/fastinvader2.wav");
 	fastInvaderSounds[2] = LoadSound("Sounds/fastinvader3.wav");

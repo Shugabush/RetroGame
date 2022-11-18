@@ -8,7 +8,6 @@ class Enemy : public SpriteObject
 	Timer moveTimer;
 
 	int direction;
-
 	int health;
 
 	Vector2 startingPosition;
@@ -16,9 +15,6 @@ class Enemy : public SpriteObject
 	bool defeated;
 	
 public:
-	int rectWidth;
-	int rectHeight;
-
 	int pointValue; // How many points is this enemy worth when defeated?
 
 	Enemy(float delay, int dir);

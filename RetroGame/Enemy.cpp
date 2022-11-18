@@ -10,8 +10,8 @@ Enemy::Enemy(float delay = 0, int dir = 1)
 {
 	name = "New Enemy";
 	health = 1;
-	rectWidth = 25;
-	rectHeight = 20;
+	width = 25;
+	height = 20;
 	moveTimer = 5;
 	moveTimer.Delay(delay);
 	direction = dir;
@@ -38,7 +38,7 @@ void Enemy::UpdateStartingPosition()
 void Enemy::Update()
 {
 	moveTimer.Update();
-	collider->SetBounds({ position.x, position.y, (float)rectWidth, (float)rectHeight });
+	collider->SetBounds({ position.x, position.y, (float)width, (float)height });
 
 	if (moveTimer.PastTimer())
 	{
@@ -95,9 +95,9 @@ EnemyManager::EnemyManager()
 
 			if (r < SMALLROWS)
 			{
-				enemies[c][r]->pointValue = 40;
-				enemies[c][r]->rectWidth = 20;
-				enemies[c][r]->rectHeight = 20;
+				enemies[c][r]->pointValue = 30;
+				enemies[c][r]->width = 20;
+				enemies[c][r]->height = 20;
 				sprite = smallEnemySprites[0];
 				sprite2 = smallEnemySprites[1];
 			}
@@ -352,15 +352,15 @@ Ufo::Ufo()
 {
 	pointValue = 100;
 	sprites.push_back(ufoSprite);
-	rectWidth = 25;
-	rectHeight = 25;
+	width = 25;
+	height = 25;
 	position = { 0, 25 };
 }
 
 void Ufo::Update()
 {
 	color = RED;
-	collider->SetBounds({ position.x, position.y, (float)rectWidth, (float)rectHeight });
+	collider->SetBounds({ position.x, position.y, (float)width, (float)height });
 	position.x += 5;
 	if (!InBounds(this))
 	{

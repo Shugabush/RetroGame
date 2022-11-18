@@ -7,4 +7,5 @@ public:
 	Explosion();
 
 	void UpdateAnimation() override;
+	void OnUpdate() override;
 };

@@ -26,3 +26,9 @@ void Explosion::UpdateAnimation()
 		}
 	}
 }
+
+void Explosion::OnUpdate()
+{
+	UpdateAnimation();
+	Update();
+}

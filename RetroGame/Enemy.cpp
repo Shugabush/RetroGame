@@ -396,8 +396,9 @@ void Ufo::OnCollisionStay(Collider* other)
 		Explosion* explosion = new Explosion();
 		explosion->sprites[0] = ufoExplosionSprite;
 		explosion->position = position;
-		explosion->width = 25;
+		explosion->width = 40;
 		explosion->height = 20;
+		explosion->color = color;
 		Instantiate(explosion);
 	}
 }

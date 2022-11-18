@@ -67,7 +67,7 @@ public:
 	const int NORMALROWS = 3; // Normal enemy sprite rows
 	// The remaining rows will be filled with small enemy sprites
 
-	const int ROWS = 11; // Total enemy rows
+	const int ROWS = 5; // Total enemy rows
 	const int COLS = 5; // Total enemy columns
 
 	EnemyManager();

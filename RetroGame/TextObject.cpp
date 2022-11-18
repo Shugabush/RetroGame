@@ -75,4 +75,12 @@ void PendingScreen::LateDraw()
 	//DrawTexturePro(sprites[currentSprite], {0, 0, (float)sprites[currentSprite].width, (float)sprites[currentSprite].height}, {position.x, position.y, size.x, size.y}, {extents.x, extents.y}, rotation, color);
 	DrawTexturePro(ufoSprite, { 0, 0, (float)ufoSprite.width, (float)ufoSprite.height }, { 215, 305, 25, 15 }, { 0, 0 }, 0, WHITE);
 	DrawText("= ? Mystery", 250, 300, 25, WHITE);
+
+	// Draw small enemy sprite and text
+	DrawTexturePro(smallEnemySprites[0], { 0, 0, (float)smallEnemySprites[0].width, (float)smallEnemySprites[0].height}, {220, 350, 15, 15}, {0, 0}, 0, WHITE);
+	DrawText("= 30 Points", 250, 350, 25, WHITE);
+
+	// Draw normal enemy sprite and text
+	DrawTexturePro(normalEnemySprites[0], { 0, 0, (float)normalEnemySprites[0].width, (float)normalEnemySprites[0].height }, { 215, 400, 25, 20 }, { 0, 0 }, 0, WHITE);
+	//DrawText("= 30 Points", 250, 350, 25, WHITE);
 }

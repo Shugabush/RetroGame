@@ -6,6 +6,7 @@
 #include "Background.h"
 
 #include <iostream>
+#include "SoundPool.h"
 
 std::vector<GameObject*> objects;
 std::vector<GameObject*> pendingObjects;
@@ -51,6 +52,9 @@ void Destroy(GameObject* obj)
 
 void StartGame()
 {
+	StopMusicStream(song);
+	PlayMusicStream(song);
+
 	objects.clear();
 	objectsToDestroy.clear();
 	pendingObjects.clear();

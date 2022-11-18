@@ -11,5 +11,6 @@ extern Sound playerKilledSound;
 extern Sound ufoSounds[2];
 
 extern Sound shootSound;
+extern float songSpeed;
 
 extern void LoadSounds();

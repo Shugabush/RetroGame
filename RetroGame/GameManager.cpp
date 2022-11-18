@@ -1,4 +1,5 @@
 #include "GameManager.h"
+#include "SoundPool.h"
 
 GameState gameState = PENDING;
 
@@ -36,6 +37,10 @@ void GameManager::Play()
 {
 	gameState = ACTIVE;
 	scoreText->text = std::to_string(score);
+	StopMusicStream(song);
+	songSpeed = 1;
+	SetMusicPitch(song, 1);
+	PlayMusicStream(song);
 }
 
 void GameManager::Win()

@@ -55,8 +55,6 @@ int main()
 
     Start();
 
-    PlayMusicStream(song);
-
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {

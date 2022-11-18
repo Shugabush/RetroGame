@@ -11,6 +11,8 @@ Sound ufoSounds[2];
 
 Sound shootSound;
 
+float songSpeed = 1;
+
 void LoadSounds()
 {
 	song = LoadMusicStream("Sounds/spaceinvaders.mp3");

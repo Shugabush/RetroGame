@@ -162,6 +162,8 @@ void Enemy::OnCollisionStay(Collider* other)
 		GameManager::UpdateScore(pointValue);
 		EnemyManager::instance->reset = true;
 
+		EnemyManager::instance->MoveFaster(1.01f);
+
 		PlaySound(invaderKilledSound);
 
 		Destroy(other->gameObject);
@@ -237,6 +239,17 @@ void EnemyManager::Draw()
 	{
 		FixUndefeatedEnemies();
 		reset = false;
+	}
+}
+
+void EnemyManager::MoveFaster(float factor)
+{
+	for (int r = ROWS - 1; r >= 0; r--)
+	{
+		for (int c = 0; c < COLS; c++)
+		{
+			enemies[c][r]->MoveFaster(factor);
+		}
 	}
 }
 

@@ -81,6 +81,8 @@ public:
 	void Update() override;
 	void Draw() override;
 
+	void MoveFaster(float factor); // Reduce the move timer for each enemy
+
 	bool ShouldShift();
 
 	void FixUndefeatedEnemies();

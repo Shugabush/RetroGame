@@ -62,7 +62,7 @@ void Player::LateDraw()
 {
 	std::string healthString = "Health: ";
 	healthString += std::to_string(health);
-	DrawText(healthString.c_str(), 25, 25, 25, RED);
+	DrawText(healthString.c_str(), 25, 550, 25, RED);
 }
 
 void Player::Shoot(Vector2 vel)

@@ -10,4 +10,6 @@ public:
 	float size;
 
 	void Update() override;
+
+	void OnCollisionStay(Collider* other) override;
 };

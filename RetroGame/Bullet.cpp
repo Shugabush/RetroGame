@@ -22,3 +22,13 @@ void Bullet::Update()
 		Destroy(this);
 	}
 }
+
+void Bullet::OnCollisionStay(Collider* other)
+{
+	if (other->gameObject->name == "Enemy Bullet" || other->gameObject->name == "Player Bullet")
+	{
+		// We collided with a bullet, so destroy that bullet and this one
+		Destroy(other->gameObject);
+		Destroy(this);
+	}
+}

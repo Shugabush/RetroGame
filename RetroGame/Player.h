@@ -9,8 +9,6 @@ class Player : public SpriteObject
 
 public:
 	float movementSpeed;
-	int rectWidth;
-	int rectHeight;
 
 	Player(int health);
 

@@ -171,9 +171,11 @@ void Enemy::OnCollisionStay(Collider* other)
 		PlaySound(invaderKilledSound);
 
 		Explosion* explosion = new Explosion();
+		explosion->sprites.push_back(enemyExplosionSprite);
 		explosion->position = position;
 		explosion->width = 25;
 		explosion->height = 20;
+		explosion->color = color;
 		Instantiate(explosion);
 
 		Destroy(other->gameObject);
@@ -394,7 +396,7 @@ void Ufo::OnCollisionStay(Collider* other)
 
 		// Create explosion
 		Explosion* explosion = new Explosion();
-		explosion->sprites[0] = ufoExplosionSprite;
+		explosion->sprites.push_back(ufoExplosionSprite);
 		explosion->position = position;
 		explosion->width = 40;
 		explosion->height = 20;

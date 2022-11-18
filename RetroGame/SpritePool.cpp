@@ -14,6 +14,7 @@ Texture2D ufoSprite;
 Texture2D ufoExplosionSprite;
 
 Texture2D barrierSprite;
+
 Texture2D playerBulletSprites[4];
 Texture2D enemyBulletSprites[4];
 
@@ -24,8 +25,6 @@ void LoadTextures()
 	playerSprite = LoadTexture("Sprites/player.png");
 	playerExplosionSprites[0] = LoadTexture("Sprites/playerexplosion.png");
 	playerExplosionSprites[1] = LoadTexture("Sprites/playerexplosion2.png");
-
-	
 
 	smallEnemySprites[0] = LoadTexture("Sprites/enemySmall.png");
 	smallEnemySprites[1] = LoadTexture("Sprites/enemySmall2.png");

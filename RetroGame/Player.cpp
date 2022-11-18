@@ -7,10 +7,10 @@
 
 Player::Player(int health)
 {
-	this->health = 3;
+	this->health = 1;
 	movementSpeed = 1;
-	rectWidth = 25;
-	rectHeight = 25;
+	width = 25;
+	height = 25;
 	shootTimer = Timer(0.25f);
 	sprites.push_back(playerSprite);
 }
@@ -37,7 +37,7 @@ void Player::Update()
 		Shoot({0, 5});
 	}
 
-	collider->SetBounds({ position.x, position.y, (float)rectWidth, (float)rectHeight });
+	collider->SetBounds({ position.x, position.y, (float)width, (float)height });
 }
 
 void Player::Draw()
@@ -78,18 +78,20 @@ void Player::TakeDamage()
 	PlaySound(playerKilledSound);
 	if (health <= 0)
 	{
-		GameManager::Lose();
-
 		// Create explosion
 		Explosion* explosion = new Explosion();
-		explosion->sprites[0] = playerExplosionSprites[0];
+		explosion->sprites.push_back(playerExplosionSprites[0]);
 		explosion->sprites.push_back(playerExplosionSprites[1]);
-		explosion->color = color;
 		explosion->position = position;
-		explosion->width = width;
-		explosion->width = height;
+		explosion->width = 30;
+		explosion->height = 20;
+		explosion->color = color;
+
+		explosion->collider->SetBounds({ position.x, position.y, (float)30, (float)20 });
 
 		Instantiate(explosion);
+
+		GameManager::Lose();
 	}
 }
 

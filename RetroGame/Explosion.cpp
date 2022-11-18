@@ -4,9 +4,9 @@ Explosion::Explosion() : SpriteObject()
 {
 	name = "Explosion";
 	animationTimer = Timer(0.25f);
-	sprites.push_back(enemyExplosionSprite);
 	width = 25;
 	height = 25;
+	color = WHITE;
 }
 
 void Explosion::UpdateAnimation()

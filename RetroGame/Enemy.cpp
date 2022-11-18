@@ -132,7 +132,7 @@ bool EnemyManager::ShouldShift()
 		case 1:
 			return !InBounds(enemies[LastColumn()][0], spawnRange.width + 40, spawnRange.height + 40);
 		case -1:
-			return enemies[0][0]->position.x < 40 || enemies[0][0]->position.y < 40;
+			return enemies[LastColumn()][0]->position.x < 40 || enemies[LastColumn()][0]->position.y < 40;
 		default:
 			return false;
 	}
@@ -162,7 +162,9 @@ void Enemy::OnCollisionStay(Collider* other)
 		GameManager::UpdateScore(pointValue);
 		EnemyManager::instance->reset = true;
 
-		EnemyManager::instance->MoveFaster(1.01f);
+		float speedFactor = 1.01f + (Clamp(GameManager::roundsCompleted, 0, 3) * 0.01f);
+
+		EnemyManager::instance->MoveFaster(speedFactor);
 
 		PlaySound(invaderKilledSound);
 
@@ -284,6 +286,36 @@ void EnemyManager::FixUndefeatedEnemies()
 		// We won the game
 		GameManager::Win();
 	}
+}
+
+int EnemyManager::FirstRow()
+{
+	for (int r = 0; r < ROWS; r++)
+	{
+		for (int c = 0; c < COLS; c++)
+		{
+			if (enemies[c][r] != nullptr && !enemies[c][r]->Defeated())
+			{
+				return r;
+			}
+		}
+	}
+	return 0;
+}
+
+int EnemyManager::FirstColumn()
+{
+	for (int c = 0; c < COLS; c++)
+	{
+		for (int r = 0; r < ROWS; r++)
+		{
+			if (enemies[c][r] != nullptr && !enemies[c][r]->Defeated())
+			{
+				return c;
+			}
+		}
+	}
+	return 0;
 }
 
 int EnemyManager::LastColumn()

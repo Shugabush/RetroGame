@@ -89,7 +89,9 @@ public:
 
 	Enemy* GetRandomEnemy();
 
-	int LastColumn();
+	int FirstRow();
+	int FirstColumn();
 	int LastRow();
+	int LastColumn();
 };
 

@@ -40,6 +40,7 @@ void GameManager::Play()
 
 void GameManager::Win()
 {
+	roundsCompleted++;
 	gameState = VICTORY;
 	winScreen->text = "Victory!\nClick to replay\nPress escape to exit";
 }

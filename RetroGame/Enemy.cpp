@@ -77,7 +77,7 @@ EnemyManager::EnemyManager()
 	instance = this;
 	name = "Enemy Manager";
 	enemies = new Enemy**[COLS];
-	spawnRange = { 25, 25, 550, 300 };
+	spawnRange = { 25, 50, 550, 300 };
 	shootTimer = Timer(1);
 	ufoTimer = Timer(10);
 	yCross = 400;

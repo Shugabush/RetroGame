@@ -21,10 +21,16 @@ public:
 	static TextScreen* loseScreen;
 
 	static TextObject* scoreText; // Display score
+	static TextObject* highScoreText; // Display high score
 
 	static PendingScreen* pendingScreen;
 
 	static int score; // How many points we have
+	static int highScore; // High score
+
+	static void SaveHighScore();
+	static void LoadHighScore();
+
 	static int roundsCompleted; // How many rounds have we completed?
 
 	GameManager();

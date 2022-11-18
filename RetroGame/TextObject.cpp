@@ -22,7 +22,7 @@ void TextObject::Update()
 
 void TextObject::LateDraw()
 {
-	DrawText(text.c_str(), (int)position.x - (text.length() * (textSize / 5)), (int)position.y - (text.length() * (textSize / 5)), textSize, color);
+	DrawText(text.c_str(), (int)position.x, (int)position.y, textSize, color);
 }
 
 TextScreen::TextScreen()

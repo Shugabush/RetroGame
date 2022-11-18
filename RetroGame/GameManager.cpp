@@ -1,3 +1,4 @@
+#include <fstream>
 #include "GameManager.h"
 #include "SoundPool.h"
 
@@ -6,21 +7,46 @@ GameState gameState = PENDING;
 TextScreen* GameManager::winScreen = new TextScreen("Victory!\nClick to replay");
 TextScreen* GameManager::loseScreen = new TextScreen("Defeat!\nClick to try again");
 TextObject* GameManager::scoreText = new TextObject("0");
+TextObject* GameManager::highScoreText = new TextObject("0");
 
 PendingScreen* GameManager::pendingScreen = new PendingScreen();
 
 int GameManager::score = 0;
+int GameManager::highScore = 0;
 int GameManager::roundsCompleted = 0;
 
 GameManager::GameManager()
 {
-	scoreText->position = { 250, 30 };
+	scoreText->position = { 250, 20 };
+	highScoreText->position = { 300, 20 };
+}
+
+void GameManager::SaveHighScore()
+{
+	std::fstream saveFile;
+	saveFile.open("save.dat", std::ios::out | std::ios::binary);
+
+	saveFile.write((const char*)&highScore, sizeof(int));
+	saveFile.close();
+}
+
+void GameManager::LoadHighScore()
+{
+	std::fstream loadFile;
+	loadFile.open("save.dat", std::ios::in | std::ios::binary);
+	loadFile.read((char*)&highScore, sizeof(int));
+	loadFile.close();
 }
 
 void GameManager::UpdateScore(int value)
 {
 	score += value;
+	if (score > highScore)
+	{
+		highScore = score;
+	}
 	scoreText->text = std::to_string(score);
+	highScoreText->text = std::to_string(highScore);
 }
 
 void GameManager::Pending()
@@ -37,6 +63,7 @@ void GameManager::Play()
 {
 	gameState = ACTIVE;
 	scoreText->text = std::to_string(score);
+	highScoreText->text = std::to_string(highScore);
 	StopMusicStream(song);
 	songSpeed = 1;
 	SetMusicPitch(song, 1);
@@ -72,11 +99,18 @@ void GameManager::Lose(std::string text)
 
 void GameManager::Update()
 {
-	scoreText->color = GREEN;
+	scoreText->color = WHITE;
+	highScoreText->color = WHITE;
 	scoreText->Update();
+	highScoreText->Update();
 }
 
 void GameManager::LateDraw()
 {
+	// Draw score and high score labels
+	DrawText("Score", 250, 5, 25, WHITE);
+
+	// Draw score and high score text
 	scoreText->LateDraw();
+	highScoreText->LateDraw();
 }

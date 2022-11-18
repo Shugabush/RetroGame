@@ -54,6 +54,7 @@ int main()
     LoadSounds();
 
     Start();
+    GameManager::LoadHighScore();
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -112,6 +113,8 @@ int main()
 
         //----------------------------------------------------------------------------------
     }
+
+    GameManager::SaveHighScore();
 
     Quit();
 

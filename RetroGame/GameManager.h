@@ -17,13 +17,12 @@ extern GameState gameState;
 class GameManager : public GameObject
 {
 public:
-	static TextScreen* pendingScreen;
 	static TextScreen* winScreen;
 	static TextScreen* loseScreen;
 
 	static TextObject* scoreText; // Display score
 
-	static ScoreAdvanceTable* scoreTable;
+	static PendingScreen* pendingScreen;
 
 	static int score; // How many points we have
 	static int roundsCompleted; // How many rounds have we completed?

@@ -29,10 +29,11 @@ public:
 	void LateDraw() override;
 };
 
-class ScoreAdvanceTable : public GameObject
+class PendingScreen : public GameObject
 {
 public:
 	TextScreen* text;
 
+	void Update() override;
 	void LateDraw() override;
 };

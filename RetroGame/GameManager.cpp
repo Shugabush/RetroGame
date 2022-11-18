@@ -2,12 +2,11 @@
 
 GameState gameState = PENDING;
 
-TextScreen* GameManager::pendingScreen = new TextScreen("Click to play\nPress Escape to quit");
 TextScreen* GameManager::winScreen = new TextScreen("Victory!\nClick to replay");
 TextScreen* GameManager::loseScreen = new TextScreen("Defeat!\nClick to try again");
 TextObject* GameManager::scoreText = new TextObject("0");
 
-ScoreAdvanceTable* GameManager::scoreTable = new ScoreAdvanceTable();
+PendingScreen* GameManager::pendingScreen = new PendingScreen();
 
 int GameManager::score = 0;
 int GameManager::roundsCompleted = 0;
@@ -26,13 +25,11 @@ void GameManager::UpdateScore(int value)
 void GameManager::Pending()
 {
 	gameState = PENDING;
-	pendingScreen->text = "Play";
 }
 
 void GameManager::Pending(std::string text)
 {
 	gameState = PENDING;
-	pendingScreen->text = text;
 }
 
 void GameManager::Play()

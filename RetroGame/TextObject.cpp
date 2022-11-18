@@ -54,18 +54,25 @@ void TextScreen::LateDraw()
 	DrawText(text.c_str(), (int)position.x - (text.length() * (textSize / 5)), (int)position.y - (text.length() * (textSize / 5)), textSize, DARKBLUE);
 }
 
+void PendingScreen::Update()
+{
+	if (IsMouseButtonDown(0))
+	{
+		GameManager::Play();
+		StartGame();
+	}
+}
+
 // Hard-coded layout of text and images to draw
-void ScoreAdvanceTable::LateDraw()
+void PendingScreen::LateDraw()
 {
 	if (gameState == PENDING)
 	{
 		int posX = screenWidth / 2;
 		int posY = screenHeight / 2;
-		
-		posY -= 200;
-		DrawText("PLAY", posX, posY, 25, WHITE);
 
-		posX -= 150;
+		DrawText("Play", 265, 150, 25, WHITE);
+		DrawText("Space Invaders", 200, 200, 25, WHITE);
 
 		DrawText("*Score Advance Table*", posX, posY, 25, WHITE);
 		posX += 15;

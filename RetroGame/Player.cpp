@@ -7,7 +7,7 @@
 
 Player::Player(int health)
 {
-	this->health = 1;
+	this->health = 3;
 	movementSpeed = 1;
 	width = 25;
 	height = 25;

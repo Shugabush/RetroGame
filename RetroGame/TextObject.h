@@ -6,6 +6,7 @@ class TextObject : public GameObject
 {
 
 public:
+	int textSize;
 	std::string text;
 	Color color;
 

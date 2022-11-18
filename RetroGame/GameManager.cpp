@@ -64,6 +64,7 @@ void GameManager::Lose(std::string text)
 
 void GameManager::Update()
 {
+	scoreText->color = GREEN;
 	scoreText->Update();
 }
 

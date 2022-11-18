@@ -40,15 +40,18 @@ protected:
 	int currentSprite;
 
 public:
+	SpriteObject();
+
 	int width, height;
 
-	Timer animationTimer = Timer(5);
-	Color color = WHITE;
+	Timer animationTimer;
+	Color color;
 
 	std::vector<Texture2D> sprites;
 
 	void OnUpdate() override;
-	void UpdateAnimation(); // Update sprite animation
+	void Update() override;
+	virtual void UpdateAnimation(); // Update sprite animation
 
 	void Draw() override;
 };

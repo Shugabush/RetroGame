@@ -3,6 +3,7 @@
 #include "GameManager.h"
 #include "SpritePool.h"
 #include "SoundPool.h"
+#include "Explosion.h"
 
 EnemyManager* EnemyManager::instance = nullptr;
 
@@ -158,6 +159,7 @@ void Enemy::OnCollisionStay(Collider* other)
 {
 	if (other->gameObject->name == "Bullet")
 	{
+		// This enemy was defeated
 		defeated = true;
 		GameManager::UpdateScore(pointValue);
 		EnemyManager::instance->reset = true;
@@ -167,6 +169,12 @@ void Enemy::OnCollisionStay(Collider* other)
 		EnemyManager::instance->MoveFaster(speedFactor);
 
 		PlaySound(invaderKilledSound);
+
+		Explosion* explosion = new Explosion();
+		explosion->position = position;
+		explosion->width = 25;
+		explosion->height = 20;
+		Instantiate(explosion);
 
 		Destroy(other->gameObject);
 	}
@@ -383,5 +391,13 @@ void Ufo::OnCollisionStay(Collider* other)
 		GameManager::UpdateScore(pointValue);
 		Destroy(other->gameObject);
 		Destroy(this);
+
+		// Create explosion
+		Explosion* explosion = new Explosion();
+		explosion->sprites[0] = ufoExplosionSprite;
+		explosion->position = position;
+		explosion->width = 25;
+		explosion->height = 20;
+		Instantiate(explosion);
 	}
 }

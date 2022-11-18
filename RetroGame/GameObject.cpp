@@ -74,6 +74,12 @@ void GameObject::OnCollisionExit(Collider* other)
 
 }
 
+SpriteObject::SpriteObject()
+{
+	color = WHITE;
+	animationTimer = Timer(5);
+}
+
 void SpriteObject::OnUpdate()
 {
 	if (position.y >= yCross)
@@ -101,6 +107,11 @@ void SpriteObject::UpdateAnimation()
 			currentSprite = 0;
 		}
 	}
+}
+
+void SpriteObject::Update()
+{
+	collider->SetBounds({ position.x, position.y, (float)width, (float)height});
 }
 
 void SpriteObject::Draw()

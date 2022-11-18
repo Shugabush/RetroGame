@@ -17,8 +17,8 @@ int GameManager::roundsCompleted = 0;
 
 GameManager::GameManager()
 {
-	scoreText->position = { 250, 20 };
-	highScoreText->position = { 300, 20 };
+	scoreText->position = { 150, 25 };
+	highScoreText->position = { 350, 25 };
 }
 
 void GameManager::SaveHighScore()
@@ -108,7 +108,8 @@ void GameManager::Update()
 void GameManager::LateDraw()
 {
 	// Draw score and high score labels
-	DrawText("Score", 250, 5, 25, WHITE);
+	DrawText("Score", 125, 5, 25, WHITE);
+	DrawText("High Score", 300, 5, 25, WHITE);
 
 	// Draw score and high score text
 	scoreText->LateDraw();
